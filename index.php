@@ -16,7 +16,7 @@
       <!-- HERO SEARCH BAR -->
       <div class="hero-search">
         <form action="#" method="GET">
-          <input type="text" name="destination" placeholder="Search tours">
+          <input type="text" id="tourSearch" name="tour" placeholder="Search tours">
 
           <!--
           <select name="duration">
@@ -27,10 +27,11 @@
           </select>
           -->
 
-          <button type="submit">
+          <button type="submit" disabled>
             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
           </button>
         </form>
+        <div id="searchResults" class="search-results"></div>
       </div>
 
       <h1 class="hero-lgt">LET'S GO TOGETHER</h1>
@@ -72,7 +73,7 @@
       ?>
         <div class="tour-card">
           <img
-            src="admin/assets/images/tours/<?= $tour['banner_image']; ?>"
+            src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>"
             alt="<?= htmlspecialchars($tour['title']); ?>"
           >
 
@@ -99,4 +100,56 @@
   </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<!-- INTERNATIONAL FLIGHTS -->
+<section class="home-flights">
+  <div class="container">
+    <h2 class="section-title-flight">International Flight Booking</h2>
+    <p class="section-subtitle">
+      Best airfare deals with professional ticketing assistance
+    </p>
+
+    <div class="flight-grid">
+
+      <?php
+      $flights = mysqli_query($conn, 
+        "SELECT * FROM flights WHERE status = 1 ORDER BY id DESC LIMIT 3"
+      );
+
+      while($flight = mysqli_fetch_assoc($flights)){
+      ?>
+        <div class="flight-card">
+          <img src="admin/uploads/images/flights/<?= $flight['image']; ?>" 
+               alt="<?= $flight['from_city'].' to '.$flight['to_city']; ?>">
+
+          <div class="flight-info">
+            <h3>
+              <?= htmlspecialchars($flight['from_city']); ?> →
+              <?= htmlspecialchars($flight['to_city']); ?>
+            </h3>
+
+            <!-- Optional Description -->
+            <!-- <p><?= htmlspecialchars($flight['description']); ?></p> -->
+
+            <!-- Price -->
+            <!-- <?php if($flight['price']){ ?>
+              <p><strong>From:</strong> <?= $flight['price']; ?></p>
+            <?php } ?> -->
+
+            <!-- Details Page -->
+            <a href="flight-details.php?id=<?= $flight['id']; ?>" 
+               class="btn-primary">
+              View Details
+            </a>
+          </div>
+        </div>
+      <?php } ?>
+      
+    </div>
+
+    <!-- CTA -->
+    <a href="flights.php" class="btn-primary-flight">
+       More
+    </a>
+  </div>
+</section>
+
