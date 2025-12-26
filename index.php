@@ -153,3 +153,128 @@
   </div>
 </section>
 
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+
+    <h2 class="section-title">Our Services</h2>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span>🏔️</span>
+        <h3>Tour Packages</h3>
+        <p>Domestic & international tour packages tailored for you.</p>
+        <!-- <a href="/tours" class="service-link">Explore Tours</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>✈️</span>
+        <h3>Flight Ticketing</h3>
+        <p>International & domestic flight booking assistance.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>🛂</span>
+        <h3>Visa Services</h3>
+        <p>Professional visa consultation & documentation support.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>🚌</span>
+        <h3>Bus Ticketing</h3>
+        <p>Easy bus ticketing for domestic destinations.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>🥾</span>
+        <h3>Himalayan Trekking</h3>
+        <p>Everest, Annapurna & Langtang trekking adventures.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Inquire Now</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>🏕️</span>
+        <h3>Camping & Equipment</h3>
+        <p>Camping trips and rental of quality camping gear.</p>
+      </div>
+
+      <div class="service-card">
+        <span>🧗</span>
+        <h3>Adventure Activities</h3>
+        <p>Rafting, paragliding, jungle safari & more.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="why-us">
+  <div class="container">
+
+    <h2 class="section-title white">Why Choose Take Your Seat?</h2>
+
+    <div class="why-grid">
+
+      <div class="why-box">
+        <span class="why-icon">🌍</span>
+        <h3>Local Expertise</h3>
+        <p>Experienced team with deep local knowledge.</p>
+      </div>
+
+      <div class="why-box">
+        <span class="why-icon">💰</span>
+        <h3>Affordable Pricing</h3>
+        <p>Best value packages without compromising quality.</p>
+      </div>
+
+      <div class="why-box">
+        <span class="why-icon">⭐</span>
+        <h3>Trusted Service</h3>
+        <p>Customer satisfaction and safety first.</p>
+      </div>
+
+      <div class="why-box">
+        <span class="why-icon">📞</span>
+        <h3>24/7 Support</h3>
+        <p>We are always available for our travelers.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations">
+  <div class="container">
+
+    <h2 class="section-title">Top Destinations</h2>
+
+    <div class="destination-grid">
+      <div class="destination-card">Nepal</div>
+      <div class="destination-card">India</div>
+      <div class="destination-card">Dubai</div>
+      <div class="destination-card">Thailand</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="home-cta">
+  <div class="cta-overlay">
+    <div class="container">
+      <h2>Ready to Plan Your Trip?</h2>
+      <p>Let us help you create unforgettable travel experiences.</p>
+      <a href="contact.php" class="btn-primary">Contact Us Now</a>
+    </div>
+  </div>
+</section>
+
+
