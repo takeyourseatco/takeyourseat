@@ -17,7 +17,7 @@
 <section class="container tour-list">
 
 <?php
-$result = mysqli_query($conn, "SELECT * FROM tours ORDER BY id DESC");
+$result = mysqli_query($conn, "SELECT * FROM tours WHERE status = 1 ORDER BY id DESC");
 while($row = mysqli_fetch_assoc($result)){
 ?>
   <div class="tour-row">
