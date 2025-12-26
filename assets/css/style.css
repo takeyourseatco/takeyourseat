@@ -465,7 +465,53 @@ a {
 
 
 
+/* SERVICES */
+.services {
+  padding: 30px 0;
+  background: #f9fbfd;
+}
 
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+}
+
+.service-card span {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  margin-bottom: 10px;
+  color: #006DB6;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.service-link {
+  color: #FFA630;
+  font-weight: 600;
+  text-decoration: none;
+}
 
 
 /* FOOTER */
