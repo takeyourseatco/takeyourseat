@@ -662,6 +662,18 @@ a {
   font-size: 15px;
 }
 
+/* FORM BOX */
+.contact-section {
+  padding: 70px 0;
+  background: #f9fbfd;
+}
+
+.contact-flex {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
 /* CONTACT SOCIAL ICONS */
 .contact-social {
   margin-top: 25px;
@@ -702,6 +714,7 @@ a {
     justify-content: center;
   }
 }
+
 
 /* LEFT COLUMN */
 .contact-left {
@@ -748,6 +761,53 @@ a {
   border: none;
 }
 
+/* RIGHT COLUMN (FORM) */
+.contact-form-box {
+  flex: 1;
+  background: #fff; 
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.contact-form-box h2 {
+  color: #006DB6;
+  margin-bottom: 20px;
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.contact-form-box textarea {
+  height: 120px;
+  resize: none;
+}
+
+.contact-form-box button {
+  background: #FFA630;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contact-form-box button:hover {
+  background: #006DB6;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .contact-flex {
+    flex-direction: column;
+  }
+}
 
 
 /* GALLERY HERO */
