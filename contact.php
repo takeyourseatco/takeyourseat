@@ -52,6 +52,15 @@ if(isset($_POST['send'])){
       </ul>
     </div>
 
+
+
+
+        <h2 class="map-title">Find Us on Map</h2>
+
+        <div class="map-box">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d514.1725170795428!2d84.42609521821994!3d27.69352602815289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fbc2ee459c9d%3A0x448dfca49a2caaa1!2sTake%20Your%20Seat%20Tours%20and%20Travels%20Pvt%20Ltd!5e0!3m2!1sen!2snp!4v1766342489448!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
 </div>
 
 <div class="contact-left">
