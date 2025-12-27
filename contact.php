@@ -73,6 +73,26 @@ if(isset($_POST['send'])){
             <a href="https://wa.me/9779865507624" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
+
+    <!-- CONTACT FORM -->
+    <div class="contact-form-box">
+      <h2>Send Us a Message</h2>
+
+      <form method="POST">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="phone" placeholder="Phone Number">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+
+        <button type="submit" name="send">Send Message</button>
+      </form>
+
+      <?php
+      if(isset($_POST['send'])){
+        echo "<p class='success-msg'>Thank you! Your message has been sent.</p>";
+      }
+      ?>
+    </div>
 </div>
 
   </div>
