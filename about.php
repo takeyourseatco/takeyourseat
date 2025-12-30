@@ -72,4 +72,36 @@
   </div>
 </section>
 
+<section class="founder-message">
+  <div class="container founder-flex">
+
+    <div class="founder-image">
+      <img src="assets/images/Founder.jpg" alt="Founder - Take Your Seat">
+    </div>
+
+    <div class="founder-content">
+      <h2>Message from the Founder</h2>
+      <p class="founder-name">Amrit Sagar Bhattarai</p>
+      <p class="founder-title">Founder & Managing Director</p>
+
+      <p>
+        "Welcome to <strong>Take Your Seat</strong>.  
+        Our mission is to provide unforgettable travel experiences while
+        ensuring comfort, safety, and authenticity. From the Himalayas
+        of Nepal to international destinations, we are committed to
+        making every journey meaningful.
+      </p>
+
+      <p>
+        Thank you for trusting us with your travel dreams.
+        We look forward to welcoming you on board."
+      </p>
+
+      <!-- <img src="/TakeYourSeat/assets/images/signature.png" class="signature" alt="Signature"> -->
+    </div>
+
+  </div>
+</section>
+
+
 <?php include 'includes/footer.php'; ?>
