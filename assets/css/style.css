@@ -699,6 +699,63 @@ a {
   }
 }
 
+
+.founder-message {
+  padding: 30px 0;
+}
+
+.founder-flex {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.founder-image img {
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.founder-content h2 {
+  color: #006DB6;
+  margin-bottom: 10px;
+}
+
+.founder-name {
+  font-weight: bold;
+  color: #FFA630;
+  margin-bottom: 5px;
+}
+
+.founder-title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.founder-content p {
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.signature {
+  width: 150px;
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .founder-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .founder-image img {
+    width: 220px;
+  }
+}
+
 /* HERO */
 .contact-hero {
   background: url('../images/about_banner.jpg') center/cover no-repeat;
