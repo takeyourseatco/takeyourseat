@@ -193,3 +193,11 @@ table th, table td {
   border-bottom: 1px solid #eee;
 }
 
+/* FOOTER */
+.admin-footer {
+  margin-left: 230px;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #777;
+} 
