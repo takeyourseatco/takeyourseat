@@ -12,6 +12,21 @@ $id = $_GET['id'];
 $tour = mysqli_fetch_assoc(
     mysqli_query($conn, "SELECT * FROM tours WHERE id=$id")
 );
+
+if (isset($_POST['send_inquiry'])) {
+    $tour_name = mysqli_real_escape_string($conn, $_POST['tour_name']);
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $message = mysqli_real_escape_string($conn, $_POST['message']);
+
+    $query = "INSERT INTO inquiries (tour_name, name, email, phone, message)
+              VALUES ('$tour_name', '$name', '$email', '$phone', '$message')";
+
+    if (mysqli_query($conn, $query)) {
+        $success = "Thank you! Your inquiry has been sent.";
+    }
+}
 ?>
 
 <section class="tour-banner"
@@ -58,6 +73,23 @@ $tour = mysqli_fetch_assoc(
         <div class="price-box">
             <h3>Trip Cost</h3>
             <p>From: NPR <?= $tour['price'] ?></p>
+        </div>
+
+        <div class="inquiry-box">
+            <h3>Trip Inquiry</h3>
+
+            <?php if (isset($success)): ?>
+                <p class="success"><?= $success ?></p>
+            <?php endif; ?>
+
+            <form method="POST">
+                <input type="hidden" name="tour_name" value="<?= $tour['title']; ?>">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="phone" placeholder="Phone">
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" name="send_inquiry">Send Inquiry</button>
+            </form>
         </div>
 
     </aside>
