@@ -544,6 +544,26 @@ a {
   padding: 60px 0;
 }
 
+.tour-content{
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 20px;
+}
+
+.tour-content h2 {
+  color: var(--blue);
+  margin: 30px 0 10px;
+}
+
+.tour-content h3 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.tour-content ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
 /* --------------------------------- */
 
 .page-banner .overlay {
