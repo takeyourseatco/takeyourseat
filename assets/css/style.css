@@ -513,6 +513,37 @@ a {
   text-decoration: none;
 }
 
+
+/* TOUR PAGE */
+.tour-banner {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+
+.tour-banner .overlay {
+  background: rgba(0,0,0,0.5);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tour-banner h1,
+.tour-banner p {
+  color: #fff;
+  text-align: center;
+}
+
+
+.tour-layout {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 30px;
+  padding: 60px 0;
+}
+
 /* --------------------------------- */
 
 .page-banner .overlay {
