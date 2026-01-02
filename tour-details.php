@@ -5,6 +5,26 @@
     <?php include 'includes/navbar.php'; ?>
 </div>
 
+<?php
+include 'config/db.php';
+
+$id = $_GET['id'];
+$tour = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT * FROM tours WHERE id=$id")
+);
+?>
+
+<section class="tour-banner"
+    style="background-image: url('admin/uploads/images/tours/<?= $tour['banner_image'] ?>');">
+
+    <div class="overlay">
+        <div class="container">
+            <h1><?= $tour['title'] ?></h1>
+            <p><?= $tour['duration'] ?> Days</p>
+        </div>
+    </div>
+</section>
+
 <section class="container tour-layout">
 
     <div class="tour-content">
