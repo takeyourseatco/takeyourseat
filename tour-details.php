@@ -28,11 +28,38 @@ $tour = mysqli_fetch_assoc(
 <section class="container tour-layout">
 
     <div class="tour-content">
-        <!-- Tour content will be added here -->
+
+        <h2>Trip Overview</h2>
+        <p><?= $tour['overview'] ?></p>
+
+        <h2>Trip Highlights</h2>
+        <ul><?= $tour['highlights'] ?></ul>
+
+        <h2>Detailed Itinerary</h2>
+        <p><?= $tour['itinerary'] ?></p>
+
+        <h2>Cost Includes</h2>
+        <ul><li><?= $tour['includes'] ?></li></ul>
+
+        <h2>Cost Excludes</h2>
+        <ul><li><?= $tour['excludes'] ?></li></ul>
+
     </div>
 
     <aside class="tour-sidebar">
-        <!-- Sidebar content will be added here -->
+
+        <div class="download-box">
+            <h3>Trip Brochure</h3>
+            <a href="admin/uploads/pdf/<?= $tour['pdf_file'] ?>" target="_blank">
+                Download PDF
+            </a>
+        </div>
+
+        <div class="price-box">
+            <h3>Trip Cost</h3>
+            <p>From: NPR <?= $tour['price'] ?></p>
+        </div>
+
     </aside>
 
 </section>
