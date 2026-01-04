@@ -1217,6 +1217,28 @@ a {
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
+/* CONTENT */
+.flight-details h1 {
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.flight-info-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.flight-info-list li {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.flight-desc {
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
 /* FOOTER */
 .site-footer {
   background: var(--blue);
