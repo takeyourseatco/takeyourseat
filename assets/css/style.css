@@ -1239,6 +1239,22 @@ a {
   line-height: 1.7;
 }
 
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .flight-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flight-image {
+    order: 1;
+  }
+
+  .flight-details {
+    order: 2;
+  }
+}
+
+
 /* FOOTER */
 .site-footer {
   background: var(--blue);
