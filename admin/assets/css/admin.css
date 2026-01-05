@@ -1,5 +1,4 @@
 
-
 * {
   margin: 0;
   padding: 0;
@@ -193,6 +192,7 @@ table th, table td {
   border-bottom: 1px solid #eee;
 }
 
+
 /* FOOTER */
 .admin-footer {
   margin-left: 230px;
@@ -201,3 +201,197 @@ table th, table td {
   font-size: 13px;
   color: #777;
 } 
+
+
+
+/* ADMIN FORM */
+.admin-form {
+  background: #fff;
+  padding: 25px;
+  max-width: 800px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.admin-form textarea {
+  min-height: 100px;
+  font-family: Arial, sans-serif;
+}
+
+.admin-form button {
+  background: #006DB6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.admin-form button:hover {
+  background: #FFA630;
+}
+
+.current-image img {
+  width: 180px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.admin-form label {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.admin-form a{
+  text-decoration: none;
+  color: #006DB6;
+}
+
+.admin-form a:hover{
+  color: #FFA630;
+}
+
+.admin-form p {
+  margin-bottom: 15px;
+}
+
+
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.pdf-view a{
+  text-decoration: none;
+  color: #006DB6;
+}
+
+.pdf-view a:hover{
+  color: #FFA630;
+}
+
+.btn-edit {
+  background: #006DB6;
+  color: #fff;
+  padding: 6px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-edit:hover {
+  background: #FFA630;
+}
+
+.btn-delete {
+  background: red;
+  color: #fff;
+  padding: 6px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-delete:hover {
+  background: #cc0000;
+}
+
+.action-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* .action-col-flight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+} */
+
+.btn-edit,
+.btn-delete {
+  width: 60px;
+  text-align: center;
+}
+
+
+.msg-cell {
+  max-width: 300px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.admin-table td {
+  vertical-align: top;
+}
+
+
+.login-body {
+  /* background: #006DB6; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: #fff;
+  width: 300px;
+  border-radius: 6px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #006DB6;
+  border: none;
+  color: #fff;
+  /* font-weight: bold; */
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.login-box button:hover {
+  background: #FFA630;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
