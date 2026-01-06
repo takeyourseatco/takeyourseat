@@ -21,7 +21,12 @@ if (isset($_POST['update'])) {
   $oldPath = "uploads/gallery/" . $oldSlug;
   $newPath = "uploads/gallery/" . $newSlug;
 
+  /* -----------------------------
+     RENAME FOLDER IF SLUG CHANGED
+  ------------------------------*/
   if ($oldSlug !== $newSlug) {
+
+    // Rename folder only if old exists
     if (is_dir($oldPath)) {
       rename($oldPath, $newPath);
     } else {
@@ -29,7 +34,11 @@ if (isset($_POST['update'])) {
     }
   }
 
+  /* -----------------------------
+     HANDLE COVER IMAGE UPDATE
+  ------------------------------*/
   if (!empty($_FILES['cover']['name'])) {
+
     $newCover = time() . '_' . $_FILES['cover']['name'];
 
     move_uploaded_file(
@@ -37,14 +46,31 @@ if (isset($_POST['update'])) {
       $newPath . '/' . $newCover
     );
 
+    // delete old cover image
     if (!empty($data['cover_image']) && file_exists($newPath . '/' . $data['cover_image'])) {
       unlink($newPath . '/' . $data['cover_image']);
     }
 
     $cover = $newCover;
   }
+
+  /* -----------------------------
+     UPDATE DATABASE
+  ------------------------------*/
+  mysqli_query($conn, "
+    UPDATE gallery_albums SET
+      title='$title',
+      slug='$newSlug',
+      cover_image='$cover',
+      status=$status
+    WHERE id=$id
+  ");
+
+  header("Location: manage-albums.php");
+  exit;
 }
 ?>
+
 
 <div class="admin-content">
   <h2>Edit Album</h2>
@@ -69,5 +95,6 @@ if (isset($_POST['update'])) {
     <button type="submit" name="update">Update Album</button>
   </form>
 </div>
+
 
 <?php include 'includes/footer.php'; ?>
