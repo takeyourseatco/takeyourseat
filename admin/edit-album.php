@@ -6,7 +6,7 @@ include '../config/db.php';
 
 $id = (int)$_GET['id'];
 $data = mysqli_fetch_assoc(
-  mysqli_query($conn, "SELECT * FROM gallery_albums WHERE id=$id")
+  mysqli_query($conn, "SELECT * FROM gallery_albums WHERE id=$id") 
 );
 
 $oldSlug = $data['slug'];
