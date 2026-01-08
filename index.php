@@ -213,44 +213,6 @@
   </div>
 </section>
 
-<!-- CLIENT STATISTICS -->
-<section class="stats-section">
-  <div class="container">
-
-    <h2 class="section-title">Our Achievements</h2>
-    <p class="section-subtitle">Numbers that reflect our journey</p>
-
-    <div class="stats-grid">
-
-      <div class="stat-box">
-        <h3 class="counter" data-target="5000">0</h3>
-        <p>Happy Clients</p>
-      </div>
-
-      <div class="stat-box">
-        <h3 class="counter" data-target="1500">0</h3>
-        <p>Flights Issued</p>
-      </div>
-
-      <div class="stat-box">
-        <h3 class="counter" data-target="1200">0</h3>
-        <p>Tour Packages</p>
-      </div>
-
-      <div class="stat-box">
-        <h3 class="counter" data-target="20">0</h3>
-        <p>Visas Issued</p>
-      </div>
-
-      <div class="stat-box">
-        <h3 class="counter" data-target="500">0</h3>
-        <p>Bus Tickets Issued</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- AIRLINE PARTNERS -->
 <section class="airline-partners">
   <h2 class="section-title">Our Airline Partners</h2>
@@ -320,7 +282,7 @@
 </section>
 
 <!-- DESTINATIONS -->
-<section class="destinations">
+<!-- <section class="destinations">
   <div class="container">
 
     <h2 class="section-title">Top Destinations</h2>
@@ -333,7 +295,7 @@
     </div>
 
   </div>
-</section>
+</section> -->
 
 <!-- CTA -->
 <section class="home-cta">
