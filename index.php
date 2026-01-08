@@ -44,55 +44,54 @@
   </div>
 </section>
 
-<!-- SEARCH / INTRO SECTION -->
-<section class="home-intro">
-  <div class="container">
-    <h1>Explore Our Latest and Popular Tour Packages</h1>
-    <p>
-      Take Your Seat offers carefully designed tour packages focusing on comfort,
-      safety, and unforgettable travel experiences.
-    </p>
-  </div>
-</section>
-
 <!-- POPULAR TOURS -->
 <section class="home-tours">
   <div class="container">
 
-    <div class="tour-grid">
-      <?php
-      $query = mysqli_query(
-        $conn,
-        "SELECT id, title, duration, banner_image
-         FROM tours
-         ORDER BY id DESC
-         LIMIT 3"
-      );
+    <h2 class="section-title">Explore Our Latest and Popular Packages</h2>
+    <p class="section-subtitle">Take Your Seat offers carefully designed packages focusing on comfort, safety, and unforgettable travel experiences.</p>
 
-      while ($tour = mysqli_fetch_assoc($query)) {
-      ?>
-        <div class="tour-card">
-          <img
-            src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>"
-            alt="<?= htmlspecialchars($tour['title']); ?>"
-          >
 
-          <div class="tour-info">
-            <h3><?= htmlspecialchars($tour['title']); ?></h3>
-            <p><?= htmlspecialchars($tour['duration']); ?></p>
+    <!-- SLIDER WRAPPER -->
+    <div class="tour-slider-wrapper">
 
-            <a
-              href="tour-details.php?id=<?= $tour['id']; ?>"
-              class="btn-primary"
-            >
-              View Details
-            </a>
+      <!-- LEFT BUTTON -->
+      <button class="slider-btn prev" onclick="slideTours(-1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <!-- SLIDER -->
+      <div class="tour-slider" id="tourSlider">
+        <?php
+        $query = mysqli_query(
+          $conn,
+          "SELECT * FROM tours WHERE status = 1 ORDER BY id DESC"
+        );
+
+        while ($tour = mysqli_fetch_assoc($query)) {
+        ?>
+          <div class="tour-card">
+            <img src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>" alt="<?= htmlspecialchars($tour['title']); ?>">
+
+            <div class="tour-info">
+              <h3><?= htmlspecialchars($tour['title']); ?></h3>
+              <p>NPR <?= htmlspecialchars($tour['price']); ?></p>
+            </div>
+
+            <div class="tour-card-btn">
+              <a href="tour-details.php?id=<?= $tour['id']; ?>">View Details</a>
+            </div>
           </div>
-        </div>
-      <?php } ?>
+        <?php } ?>
+      </div>
+
+      <!-- RIGHT BUTTON -->
+      <button class="slider-btn next" onclick="slideTours(1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
     </div>
 
-    <!-- EXPLORE MORE BUTTON -->
     <div class="center-btn">
       <a href="tours.php" class="btn-primary-em">Explore More</a>
     </div>
