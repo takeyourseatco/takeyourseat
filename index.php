@@ -346,6 +346,10 @@
   </div>
 </section>
 
+<script src="assets/js/statistics.js"></script>
+
+<?php include 'includes/footer.php'; ?>
+
 
 <script>
   const track = document.querySelector('.marquee-track');
