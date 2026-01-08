@@ -213,6 +213,37 @@
   </div>
 </section>
 
+<!-- AIRLINE PARTNERS -->
+<section class="airline-partners">
+  <h2 class="section-title">Our Airline Partners</h2>
+  <p class="section-subtitle">Numbers that reflect our journey</p>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <img src="assets/images/airlines/qatar.png" alt="">
+      <img src="assets/images/airlines/emirates.png" alt="">
+      <img src="assets/images/airlines/nepalairlines.png" alt="">
+      <img src="assets/images/airlines/flydubai.png" alt="">
+      <img src="assets/images/airlines/airindia.png" alt="">
+      <img src="assets/images/airlines/turkish.png" alt="">
+      <img src="assets/images/airlines/airasia.png" alt="">
+      <img src="assets/images/airlines/indigo.png" alt="">
+      <img src="assets/images/airlines/thaiairways.png" alt="">
+
+
+      <!-- duplicate -->
+      <img src="assets/images/airlines/qatar.png" alt="">
+      <img src="assets/images/airlines/emirates.png" alt="">
+      <img src="assets/images/airlines/nepalairlines.png" alt="">
+      <img src="assets/images/airlines/flydubai.png" alt="">
+      <img src="assets/images/airlines/airindia.png" alt="">
+      <img src="assets/images/airlines/turkish.png" alt="">
+      <img src="assets/images/airlines/airasia.png" alt="">
+      <img src="assets/images/airlines/indigo.png" alt="">
+      <img src="assets/images/airlines/thaiairways.png" alt="">
+    </div>
+  </div>
+</section>
 
 <!-- WHY CHOOSE US -->
 <section class="why-us">
