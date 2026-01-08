@@ -309,3 +309,25 @@
 </section>
 
 
+<script>
+  const track = document.querySelector('.marquee-track');
+  let speed = 0.5; // control speed
+  let position = 0;
+
+  function animateMarquee() {
+    position -= speed;
+
+    if (Math.abs(position) >= track.scrollWidth / 2) {
+      position = 0;
+    }
+
+    track.style.transform = `translateX(${position}px)`;
+    requestAnimationFrame(animateMarquee);
+  }
+
+  animateMarquee();
+
+  // Pause on hover
+  track.addEventListener('mouseenter', () => speed = 0);
+  track.addEventListener('mouseleave', () => speed = 0.5);
+</script>
