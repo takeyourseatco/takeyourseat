@@ -345,6 +345,7 @@
   </div>
 </section>
 
+<script src="assets/js/tour-slider.js"></script>
 <script src="assets/js/statistics.js"></script>
 
 <?php include 'includes/footer.php'; ?>
