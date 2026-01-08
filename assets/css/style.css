@@ -418,6 +418,73 @@ a {
 }
 
 
+
+/* SLIDER */
+.tour-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+.tour-slider {
+  display: flex;
+  gap: 25px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+/* Force 3 cards visible */
+.tour-card {
+  min-width: calc(100% / 3 - 20px);
+}
+
+/* SLIDER BUTTONS */
+.slider-btn {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  position: absolute;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background: var(--orange);
+}
+
+.slider-btn.prev {
+  left: -20px;
+}
+
+.slider-btn.next {
+  right: -20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .tour-card {
+    min-width: calc(100% / 2 - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .tour-card {
+    min-width: 100%;
+  }
+}
+
+
+
 /* FLIGHTS */
 .home-flights {
   padding: 30px 0;
