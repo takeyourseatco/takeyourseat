@@ -513,6 +513,50 @@ a {
   text-decoration: none;
 }
 
+/* AIRLINE PARTNERS */
+.airline-partners {
+  padding: 50px 0;
+  background: white;
+  text-align: center;
+}
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+}
+
+.marquee-track img {
+  height: 50px;
+  width: auto;
+  /* filter: grayscale(100%);
+  opacity: 0.8; */
+  transition: 0.3s;
+}
+/* 
+.marquee-track img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+} */
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .airline-track {
+    gap: 25px;
+  }
+
+  .airline-track img {
+    height: 45px;
+  }
+}
+
+
 
 /* TOUR PAGE */
 .tour-banner {
