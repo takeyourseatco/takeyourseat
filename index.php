@@ -345,31 +345,10 @@
   </div>
 </section>
 
+<script src="assets/js/search-tours.js"></script>
 <script src="assets/js/tour-slider.js"></script>
 <script src="assets/js/statistics.js"></script>
+<script src="assets/js/airlines-slider.js"></script>
+<script src="assets/js/clients-slider.js"></script>
 
 <?php include 'includes/footer.php'; ?>
-
-
-<script>
-  const track = document.querySelector('.marquee-track');
-  let speed = 0.5; // control speed
-  let position = 0;
-
-  function animateMarquee() {
-    position -= speed;
-
-    if (Math.abs(position) >= track.scrollWidth / 2) {
-      position = 0;
-    }
-
-    track.style.transform = `translateX(${position}px)`;
-    requestAnimationFrame(animateMarquee);
-  }
-
-  animateMarquee();
-
-  // Pause on hover
-  track.addEventListener('mouseenter', () => speed = 0);
-  track.addEventListener('mouseleave', () => speed = 0.5);
-</script>
