@@ -334,6 +334,29 @@
   </div>
 </section> -->
 
+
+<!-- HAPPY CLIENTS -->
+<section class="happy-clients">
+  <h2 class="section-title">Our Happy Clients</h2>
+  <p class="section-subtitle">Numbers that reflect our journey</p>
+
+  <div class="client-marquee">
+    <div class="client-marquee-track">
+      <!-- Client logos -->
+      <img src="admin/uploads/images/clients/balkumari.jpg" alt="Client 1">
+      <img src="admin/uploads/images/clients/boston.png" alt="Client 2">
+      <img src="admin/uploads/images/clients/cmt.png" alt="Client 3">
+      <img src="admin/uploads/images/clients/doko-namlo.jpeg" alt="Client 4">
+
+      <!-- duplicate for seamless loop -->
+      <img src="admin/uploads/images/clients/balkumari.jpg" alt="Client 1">
+      <img src="admin/uploads/images/clients/boston.png" alt="Client 2">
+      <img src="admin/uploads/images/clients/cmt.png" alt="Client 3">
+      <img src="admin/uploads/images/clients/doko-namlo.jpeg" alt="Client 4">
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="home-cta">
   <div class="cta-overlay">
@@ -352,3 +375,4 @@
 <script src="assets/js/clients-slider.js"></script>
 
 <?php include 'includes/footer.php'; ?>
+
