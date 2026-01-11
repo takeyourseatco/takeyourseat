@@ -1,4 +1,4 @@
-<?php include 'includes/header.php'; ?> 
+<?php include 'includes/header.php'; ?>
 <div class="header-wrapper">
     <?php include 'includes/topbar.php'; ?>
     <?php include 'includes/navbar.php'; ?>
@@ -31,6 +31,18 @@ if(isset($_POST['send_inquiry'])){
 }
 ?>
 
+<?php
+function renderList($text) {
+  $items = preg_split("/\r\n|\n|\r/", trim($text));
+  echo "<ul>";
+  foreach ($items as $item) {
+    if (!empty(trim($item))) {
+      echo "<li>" . htmlspecialchars($item) . "</li>";
+    }
+  }
+  echo "</ul>";
+}
+?>
 
 
 <!-- BANNER -->
@@ -59,23 +71,39 @@ if(isset($_POST['send_inquiry'])){
     </p>
 
     <h2>Trip Highlights</h2>
-    <ul>
-      <?= $tour['highlights'] ?>
+    <ul class="tour-highlights">
+      <?php renderList($tour['highlights']); ?>
     </ul>
 
     <h2>Detailed Itinerary</h2>
 
-    <h3><?= $tour['itinerary'] ?></h3>
-    <p><?= $tour['itinerary'] ?></p>
+    <div class="itinerary-list">
+    <?php
+    $itinerary = mysqli_query(
+      $conn,
+      "SELECT * FROM tour_itineraries
+      WHERE tour_id = $id
+      ORDER BY day_number ASC"
+    );
+
+    while ($day = mysqli_fetch_assoc($itinerary)) {
+    ?>
+      <div class="itinerary-day">
+        <h3>Day <?= $day['day_number']; ?>: <?= htmlspecialchars($day['title']); ?></h3>
+        <p><?= nl2br(htmlspecialchars($day['description'])); ?></p>
+      </div>
+    <?php } ?>
+    </div>
+
 
     <h2>Cost Includes</h2>
     <ul>
-      <li><?= $tour['includes'] ?></li>
+      <?php renderList($tour['includes']); ?>
     </ul>
 
     <h2>Cost Excludes</h2>
     <ul>
-      <li><?= $tour['excludes'] ?></li>
+      <?php renderList($tour['excludes']); ?>
     </ul>
 
   </div>

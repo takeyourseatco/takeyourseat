@@ -6,44 +6,46 @@ include 'includes/sidebar.php';
 
 if (isset($_POST['submit'])) {
 
-    $title       = $_POST['title'];
-    $duration    = $_POST['duration'];
-    $price       = $_POST['price'];
-    $overview    = $_POST['overview'];
-    $highlights  = $_POST['highlights'];
-    $itinerary   = $_POST['itinerary'];
-    $includes    = $_POST['includes'];
-    $excludes    = $_POST['excludes'];
-    $status      = $_POST['status'];
+    $title      = $_POST['title'];
+    $duration   = $_POST['duration'];
+    $price      = $_POST['price'];
+    $overview   = $_POST['overview'];
+    $highlights = $_POST['highlights'];
+    $includes   = $_POST['includes'];
+    $excludes   = $_POST['excludes'];
+    $status     = $_POST['status'];
 
     /* IMAGE UPLOAD */
     $banner = time() . '_' . $_FILES['banner']['name'];
-    $banner_tmp = $_FILES['banner']['tmp_name'];
-    move_uploaded_file($banner_tmp, "uploads/images/tours/" . $banner);
+    move_uploaded_file(
+        $_FILES['banner']['tmp_name'],
+        "uploads/images/tours/" . $banner
+    );
 
     /* PDF UPLOAD */
     $pdf = '';
     if (!empty($_FILES['pdf']['name'])) {
         $pdf = time() . '_' . $_FILES['pdf']['name'];
-        $pdf_tmp = $_FILES['pdf']['tmp_name'];
-        move_uploaded_file($pdf_tmp, "uploads/pdf/" . $pdf);
+        move_uploaded_file(
+            $_FILES['pdf']['tmp_name'],
+            "uploads/pdf/" . $pdf
+        );
     }
 
-    /* PREPARED STATEMENT */
+    /* INSERT TOUR */
     $stmt = $conn->prepare("
         INSERT INTO tours
-        (title, duration, price, overview, highlights, itinerary, includes, excludes, banner_image, pdf_file, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (title, duration, price, overview, highlights, includes, excludes, banner_image, pdf_file, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->bind_param(
-        "ssdsssssssi",
+        "ssdssssssi",
         $title,
         $duration,
         $price,
         $overview,
         $highlights,
-        $itinerary,
         $includes,
         $excludes,
         $banner,
@@ -52,13 +54,47 @@ if (isset($_POST['submit'])) {
     );
 
     if ($stmt->execute()) {
-        echo "<script>alert('Tour Added Successfully'); window.location.href='manage-tours.php';</script>";
+
+        $tour_id = $stmt->insert_id;
+
+        /* INSERT ITINERARY (IF EXISTS) */
+        if (
+            !empty($_POST['day_no']) &&
+            count($_POST['day_no']) === count($_POST['itinerary_title']) &&
+            count($_POST['day_no']) === count($_POST['itinerary_desc'])
+        ) {
+
+            $itStmt = $conn->prepare("
+                INSERT INTO tour_itineraries
+                (tour_id, day_number, title, description)
+                VALUES (?, ?, ?, ?)
+            ");
+
+            for ($i = 0; $i < count($_POST['day_no']); $i++) {
+
+                $day     = (int) $_POST['day_no'][$i];
+                $itTitle = $_POST['itinerary_title'][$i];
+                $itDesc  = $_POST['itinerary_desc'][$i];
+
+                if ($day && $itTitle && $itDesc) {
+                    $itStmt->bind_param("iiss", $tour_id, $day, $itTitle, $itDesc);
+                    $itStmt->execute();
+                }
+            }
+
+            $itStmt->close();
+        }
+
+        header("Location: manage-tours.php");
+        exit();
+
     } else {
-        echo "<script>alert('Error Adding Tour');</script>";
+        echo "<script>alert('Error adding tour');</script>";
     }
 
     $stmt->close();
 }
+
 ?>
 
 <div class="admin-content">
@@ -72,7 +108,20 @@ if (isset($_POST['submit'])) {
 
     <textarea name="overview" placeholder="Trip Overview" required></textarea>
     <textarea name="highlights" placeholder="Trip Highlights (one per line)" required></textarea>
-    <textarea name="itinerary" placeholder="Detailed Itinerary" required></textarea>
+
+    <label>Add Itinerary</label>
+    <div id="itinerary-wrapper">
+
+    <div class="itinerary-row">
+        <input type="number" name="day_no[]" placeholder="Day 1">
+        <input type="text" name="itinerary_title[]" placeholder="Title">
+        <textarea name="itinerary_desc[]" placeholder="Description"></textarea>
+    </div>
+
+    </div>
+
+    <button type="button" class="additinerarybtn" onclick="addItinerary()">+ Add Day</button>
+
     <textarea name="includes" placeholder="Cost Includes" required></textarea>
     <textarea name="excludes" placeholder="Cost Excludes" required></textarea>
 
@@ -91,5 +140,7 @@ if (isset($_POST['submit'])) {
     <button name="submit">Add Tour</button>
 </form>
 </div>
+
+<script src="assets/js/itinerary-days-add.js"></script>
 
 <?php include 'includes/footer.php'; ?>
