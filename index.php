@@ -282,6 +282,71 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-subtitle">
+      Real experiences from travelers who trusted Take Your Seat
+    </p>
+
+    <div class="testimonial-slider-wrapper">
+
+      <button class="slider-btn prev" onclick="slideTestimonial(-1)" id="testimonialprevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="testimonial-viewport">
+        <div class="testimonial-track" id="testimonialTrack">
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="review">Amazing service! Our Nepal tour was perfectly organized.</p>
+            <h4>Rahul Sharma</h4>
+            <span>Tour Package – Nepal</span>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="review">Very professional flight booking service.</p>
+            <h4>Sunita Karki</h4>
+            <span>Flight Ticketing</span>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="review">Visa process was smooth and well guided.</p>
+            <h4>Ajay Singh</h4>
+            <span>Visa Service</span>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="review">Best travel company in Nepal. Highly recommended.</p>
+            <h4>Ramesh Adhikari</h4>
+            <span>Tour & Flights</span>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="review">Quick response and friendly support team.</p>
+            <h4>Pooja Shrestha</h4>
+            <span>Visa & Flights</span>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="slider-btn next" onclick="slideTestimonial(1)" id="testimonialnextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- WHY CHOOSE US -->
 <section class="why-us">
   <div class="container">
