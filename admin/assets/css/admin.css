@@ -1,13 +1,20 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} 
+}
 
 body {
-  font-family: Arial, sans-serif;
+  /* font-family: Arial, sans-serif; */
   background: #f4f6f8;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, .headline {
+  font-family: 'Poppins', sans-serif;
 }
 
 /* SIDEBAR */
@@ -241,6 +248,17 @@ table th, table td {
 
 .admin-form button:hover {
   background: #FFA630;
+}
+
+.admin-form .additinerarybtn {
+  background: #006DB6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 18px;
 }
 
 .current-image img {
