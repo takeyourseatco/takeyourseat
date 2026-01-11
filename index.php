@@ -438,6 +438,8 @@
 <script src="assets/js/statistics.js"></script>
 <script src="assets/js/airlines-slider.js"></script>
 <script src="assets/js/clients-slider.js"></script>
+<script src="assets/js/clients-slider.js"></script>
+<script src="assets/js/testimonial-slider.js"></script>
 
 <?php include 'includes/footer.php'; ?>
 
