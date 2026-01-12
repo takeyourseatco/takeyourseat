@@ -116,11 +116,11 @@ function renderList($text) {
       <h3>Trip Brochure</h3>
       <p>Download the full itinerary and trip details.</p>
 
-      <a href="admin/uploads/pdf/<?= $tour['pdf_file'] ?>"
-        class="download-btn"
-        target="_blank">
+      <a href="download-pdf.php?file=<?= urlencode($tour['pdf_file']); ?>"
+        class="download-btn">
         <i class="fas fa-file-pdf"></i> Download PDF
       </a>
+
     </div>
 
     <div class="price-box">
