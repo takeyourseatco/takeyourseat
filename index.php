@@ -421,23 +421,36 @@
 </section> -->
 
 <!-- HAPPY CLIENTS -->
+<?php
+$clients = mysqli_query(
+    $conn,
+    "SELECT * FROM clients WHERE status = 1 ORDER BY id DESC"
+);
+?>
+
 <section class="happy-clients">
   <h2 class="section-title">Our Happy Clients</h2>
   <p class="section-subtitle">Numbers that reflect our journey</p>
 
   <div class="client-marquee">
     <div class="client-marquee-track">
-      <!-- Client logos -->
-      <img src="admin/uploads/images/clients/balkumari.jpg" alt="Client 1">
-      <img src="admin/uploads/images/clients/boston.png" alt="Client 2">
-      <img src="admin/uploads/images/clients/cmt.png" alt="Client 3">
-      <img src="admin/uploads/images/clients/doko-namlo.jpeg" alt="Client 4">
 
-      <!-- duplicate for seamless loop -->
-      <img src="admin/uploads/images/clients/balkumari.jpg" alt="Client 1">
-      <img src="admin/uploads/images/clients/boston.png" alt="Client 2">
-      <img src="admin/uploads/images/clients/cmt.png" alt="Client 3">
-      <img src="admin/uploads/images/clients/doko-namlo.jpeg" alt="Client 4">
+      <?php while($client = mysqli_fetch_assoc($clients)): ?>
+        <img
+          src="admin/uploads/images/clients/<?= $client['logo'] ?>"
+          alt="<?= htmlspecialchars($client['name']) ?>">
+      <?php endwhile; ?>
+
+      <!-- duplicate for smooth loop -->
+      <?php
+      mysqli_data_seek($clients, 0);
+      while($client = mysqli_fetch_assoc($clients)):
+      ?>
+        <img
+          src="admin/uploads/images/clients/<?= $client['logo'] ?>"
+          alt="<?= htmlspecialchars($client['name']) ?>">
+      <?php endwhile; ?>
+
     </div>
   </div>
 </section>
@@ -462,6 +475,7 @@
 <script src="assets/js/testimonial-slider.js"></script>
 <script src="assets/js/testimonial-btns.js"></script>
 <script src="assets/js/clients-slider.js"></script>
+
 
 
 
