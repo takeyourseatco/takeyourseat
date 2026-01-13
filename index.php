@@ -1,4 +1,5 @@
 <?php include 'includes/header.php'; ?>
+<link rel="stylesheet" href="assets/css/style.css">
 
 <!-- HEADER -->
 <div class="header-wrapper">
@@ -44,49 +45,58 @@
   </div>
 </section>
 
+
 <!-- POPULAR TOURS -->
 <section class="home-tours">
   <div class="container">
 
     <h2 class="section-title">Explore Our Latest and Popular Packages</h2>
-    <p class="section-subtitle">Take Your Seat offers carefully designed packages focusing on comfort, safety, and unforgettable travel experiences.</p>
+    <p class="section-subtitle">
+      Take Your Seat offers carefully designed packages focusing on comfort,
+      safety, and unforgettable travel experiences.
+    </p>
 
-
-    <!-- SLIDER WRAPPER -->
     <div class="tour-slider-wrapper">
 
-      <!-- LEFT BUTTON -->
-      <button class="slider-btn prev" onclick="slideTours(-1)">
+      <!-- PREV BUTTON -->
+      <button class="slider-btn prev" id="prevBtn">
         <i class="fas fa-chevron-left"></i>
       </button>
 
-      <!-- SLIDER -->
-      <div class="tour-slider" id="tourSlider">
-        <?php
-        $query = mysqli_query(
-          $conn,
-          "SELECT * FROM tours WHERE status = 1 ORDER BY id DESC"
-        );
+      <!-- SLIDER VIEWPORT -->
+      <div class="tour-slider-viewport">
+        <div class="tour-slider-track" id="tourTrack">
 
-        while ($tour = mysqli_fetch_assoc($query)) {
-        ?>
-          <div class="tour-card">
-            <img src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>" alt="<?= htmlspecialchars($tour['title']); ?>">
+          <?php
+          $query = mysqli_query(
+            $conn,
+            "SELECT * FROM tours WHERE status = 1 ORDER BY id DESC"
+          );
 
-            <div class="tour-info">
-              <h3><?= htmlspecialchars($tour['title']); ?></h3>
-              <p>NPR <?= htmlspecialchars($tour['price']); ?></p>
+          while ($tour = mysqli_fetch_assoc($query)) {
+          ?>
+            <div class="tour-card">
+              <img
+                src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>"
+                alt="<?= htmlspecialchars($tour['title']); ?>"
+              >
+
+              <div class="tour-info">
+                <h3><?= htmlspecialchars($tour['title']); ?></h3>
+                <p>NPR <?= htmlspecialchars($tour['price']); ?></p>
+              </div>
+
+              <div class="tour-card-btn">
+                <a href="tour-details.php?id=<?= $tour['id']; ?>">View Details</a>
+              </div>
             </div>
+          <?php } ?>
 
-            <div class="tour-card-btn">
-              <a href="tour-details.php?id=<?= $tour['id']; ?>">View Details</a>
-            </div>
-          </div>
-        <?php } ?>
+        </div>
       </div>
 
-      <!-- RIGHT BUTTON -->
-      <button class="slider-btn next" onclick="slideTours(1)">
+      <!-- NEXT BUTTON -->
+      <button class="slider-btn next" id="nextBtn">
         <i class="fas fa-chevron-right"></i>
       </button>
 
@@ -99,10 +109,11 @@
   </div>
 </section>
 
+
 <!-- INTERNATIONAL FLIGHTS -->
 <section class="home-flights">
   <div class="container">
-    <h2 class="section-title-flight">International Flight Booking</h2>
+    <h2 class="section-title">International Flight Booking</h2>
     <p class="section-subtitle">
       Best airfare deals with professional ticketing assistance
     </p>
@@ -157,14 +168,15 @@
   <div class="container">
 
     <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">Numbers that reflect our journey</p>
 
     <div class="services-grid">
 
       <div class="service-card">
-        <span>🏔️</span>
-        <h3>Tour Packages</h3>
-        <p>Domestic & international tour packages tailored for you.</p>
-        <!-- <a href="/tours" class="service-link">Explore Tours</a> -->
+        <span>🚌</span>
+        <h3>Bus Ticketing</h3>
+        <p>Easy bus ticketing for domestic destinations.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
       </div>
 
       <div class="service-card">
@@ -175,17 +187,10 @@
       </div>
 
       <div class="service-card">
-        <span>🛂</span>
-        <h3>Visa Services</h3>
-        <p>Professional visa consultation & documentation support.</p>
-        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
-      </div>
-
-      <div class="service-card">
-        <span>🚌</span>
-        <h3>Bus Ticketing</h3>
-        <p>Easy bus ticketing for domestic destinations.</p>
-        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
+        <span>🏔️</span>
+        <h3>Tour Packages</h3>
+        <p>Domestic & international tour packages tailored for you.</p>
+        <!-- <a href="/tours" class="service-link">Explore Tours</a> -->
       </div>
 
       <div class="service-card">
@@ -193,6 +198,13 @@
         <h3>Himalayan Trekking</h3>
         <p>Everest, Annapurna & Langtang trekking adventures.</p>
         <!-- <a href="/pages/contact.php" class="service-link">Inquire Now</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>🛂</span>
+        <h3>Visa Services</h3>
+        <p>Professional visa consultation & documentation support.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
       </div>
 
       <div class="service-card">
@@ -204,6 +216,13 @@
       <div class="service-card">
         <span>🧗</span>
         <h3>Adventure Activities</h3>
+        <p>Rafting, paragliding, jungle safari & more.</p>
+        <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
+      </div>
+
+      <div class="service-card">
+        <span>🧗</span>
+        <h3>Wildlife Activities</h3>
         <p>Rafting, paragliding, jungle safari & more.</p>
         <!-- <a href="/pages/contact.php" class="service-link">Contact Us</a> -->
       </div>
@@ -268,7 +287,6 @@
       <img src="assets/images/airlines/thaiairways.png" alt="">
 
 
-      <!-- duplicate -->
       <img src="assets/images/airlines/qatar.png" alt="">
       <img src="assets/images/airlines/emirates.png" alt="">
       <img src="assets/images/airlines/nepalairlines.png" alt="">
@@ -281,6 +299,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
@@ -347,6 +366,8 @@
   </div>
 </section>
 
+
+
 <!-- WHY CHOOSE US -->
 <section class="why-us">
   <div class="container">
@@ -399,7 +420,6 @@
   </div>
 </section> -->
 
-
 <!-- HAPPY CLIENTS -->
 <section class="happy-clients">
   <h2 class="section-title">Our Happy Clients</h2>
@@ -422,6 +442,7 @@
   </div>
 </section>
 
+
 <!-- CTA -->
 <section class="home-cta">
   <div class="cta-overlay">
@@ -433,13 +454,15 @@
   </div>
 </section>
 
+
 <script src="assets/js/search-tours.js"></script>
 <script src="assets/js/tour-slider.js"></script>
 <script src="assets/js/statistics.js"></script>
 <script src="assets/js/airlines-slider.js"></script>
-<script src="assets/js/clients-slider.js"></script>
-<script src="assets/js/clients-slider.js"></script>
 <script src="assets/js/testimonial-slider.js"></script>
+<script src="assets/js/testimonial-btns.js"></script>
+<script src="assets/js/clients-slider.js"></script>
+
+
 
 <?php include 'includes/footer.php'; ?>
-
