@@ -1,4 +1,3 @@
-
 <?php
 include 'includes/header.php';
 include 'config/db.php';
@@ -41,12 +40,31 @@ $photos = mysqli_query($conn, "SELECT * FROM gallery_photos WHERE album_id='{$al
 
       <?php while($photo = mysqli_fetch_assoc($photos)){ ?>
         <div class="photo-card">
-          <img src="admin/uploads/gallery/<?php echo $slug; ?>/<?php echo $photo['image']; ?>" alt="">
+          <img 
+            src="admin/uploads/gallery/<?php echo $slug; ?>/<?php echo $photo['image']; ?>" 
+            alt=""
+            class="gallery-img"
+          >
+
         </div>
       <?php } ?>
 
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <span class="close"><i class="fa-solid fa-xmark fa-xs"></i></i></span>
+
+  <button class="nav prev"><i class="fa-solid fa-chevron-left fa-xs"></i></button>
+
+  <img class="lightbox-img" id="lightboxImg">
+
+  <button class="nav next"><i class="fa-solid fa-chevron-right fa-xs"></i></button>
+</div>
+
+
+<script src="assets/js/album-lightbox.js"></script>
 
 <?php include 'includes/footer.php'; ?>
