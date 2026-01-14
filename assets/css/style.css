@@ -121,12 +121,22 @@ a {
   display: block;
 }
 
+/* HEADER WRAPPER */
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
 /* NAVBAR */
 .main-navbar {
   background: var(--orange);
   height: 60px;
 }
 
+/* NAV WRAPPER */
 .nav-wrapper {
   display: flex;
   align-items: center;
@@ -140,7 +150,7 @@ a {
   width: auto;
 }
 
-/* MENU */
+/* DESKTOP MENU */
 .nav-menu {
   display: flex;
   gap: 25px;
@@ -150,12 +160,12 @@ a {
 .nav-menu li a {
   color: white;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: bold;
   padding: 8px 0;
   position: relative;
 }
 
-/* HOVER EFFECT (Reference Style) */
+/* HOVER EFFECT */
 .nav-menu li a::after {
   content: "";
   position: absolute;
@@ -174,15 +184,6 @@ a {
 .nav-menu li a:hover {
   color: var(--blue);
 }
-
-.header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
 
 
 
