@@ -1644,6 +1644,71 @@ a {
   }
 }
 
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 8px;
+}
+
+/* CLOSE BUTTON */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 35px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* NAV BUTTONS */
+.lightbox .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+
+.lightbox .prev {
+  left: 30px;
+}
+
+.lightbox .next {
+  right: 30px;
+}
+
+.lightbox .nav:hover,
+.lightbox .close:hover {
+  color: var(--orange);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .lightbox .nav {
+    font-size: 30px;
+  }
+}
+
 /* FLIGHT DETAILS PAGE */
 .flight-details-section {
   padding: 20px 0;
@@ -1806,4 +1871,5 @@ a {
   background: var(--orange);
   color: #ffffff;
   transform: translateY(-3px);
+
 }
