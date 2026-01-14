@@ -40,6 +40,7 @@ if(isset($_GET['delete'])){
         <th>Excludes</th>
         <th>Image</th>
         <th>PDF</th>
+        <th>Popular</th>
         <th>Status</th>
         <th>Action</th>
 
@@ -52,6 +53,14 @@ if(isset($_GET['delete'])){
       $i = 1;
       $result = mysqli_query($conn, "SELECT * FROM tours ORDER BY id DESC");
       while($row = mysqli_fetch_assoc($result)){
+        $itRes = mysqli_query(
+          $conn,
+          "SELECT day_number, title 
+          FROM tour_itineraries 
+          WHERE tour_id = {$row['id']} 
+          ORDER BY day_number ASC 
+          LIMIT 1"
+        );
       ?>
       <tr>
         <td><?= $i++ ?></td>
@@ -68,7 +77,19 @@ if(isset($_GET['delete'])){
         </td>
 
         <td>
-          <?= implode(' ', array_slice(explode(' ', $row['itinerary']), 0, 5)); ?>...
+          <?php if (mysqli_num_rows($itRes) > 0): ?>
+            <ul style="padding-left:15px; margin:0;">
+              <?php while ($it = mysqli_fetch_assoc($itRes)): ?>
+                <li>
+                  <strong>Day <?= $it['day_number'] ?>:</strong>
+                  <?= htmlspecialchars($it['title']) ?>
+                </li>
+              <?php endwhile; ?>
+            </ul>
+            <small style="color:#777;">+ more</small>
+          <?php else: ?>
+            <em>No itinerary</em>
+          <?php endif; ?>
         </td>
 
         <td>
@@ -89,7 +110,10 @@ if(isset($_GET['delete'])){
           </div>
 
           </td>
-        
+
+        <td>
+          <?= $row['is_popular'] ? '<span class="badge badge-popular">Yes</span>' : 'No'; ?>
+        </td>
 
         <?php
           if($row['status'] == 1){

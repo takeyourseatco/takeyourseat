@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $includes   = $_POST['includes'];
     $excludes   = $_POST['excludes'];
     $status     = $_POST['status'];
+    $is_popular = $_POST['is_popular'];
 
     /* IMAGE UPLOAD */
     $banner = time() . '_' . $_FILES['banner']['name'];
@@ -35,22 +36,23 @@ if (isset($_POST['submit'])) {
     /* INSERT TOUR */
     $stmt = $conn->prepare("
         INSERT INTO tours
-        (title, duration, price, overview, highlights, includes, excludes, banner_image, pdf_file, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (title, duration, price, overview, highlights, includes, excludes, banner_image, pdf_file, status, is_popular)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->bind_param(
-        "ssdssssssi",
-        $title,
-        $duration,
-        $price,
-        $overview,
-        $highlights,
-        $includes,
-        $excludes,
-        $banner,
-        $pdf,
-        $status
+    "ssdssssssii",
+    $title,
+    $duration,
+    $price,
+    $overview,
+    $highlights,
+    $includes,
+    $excludes,
+    $banner,
+    $pdf,
+    $status,
+    $is_popular
     );
 
     if ($stmt->execute()) {
@@ -116,7 +118,10 @@ if (isset($_POST['submit'])) {
         <input type="number" name="day_no[]" placeholder="Day 1">
         <input type="text" name="itinerary_title[]" placeholder="Title">
         <textarea name="itinerary_desc[]" placeholder="Description"></textarea>
+        <button type="button" class="remove-itinerary">Remove</button>
+        
     </div>
+    
 
     </div>
 
@@ -131,6 +136,12 @@ if (isset($_POST['submit'])) {
     <label>Trip PDF</label>
     <input type="file" name="pdf" accept="application/pdf">
 
+    <label>Is Popular?</label>
+    <select name="is_popular">
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    </select>
+
     <label>Status</label>
     <select name="status" required>
         <option value="1">Active</option>
@@ -141,6 +152,6 @@ if (isset($_POST['submit'])) {
 </form>
 </div>
 
-<script src="assets/js/itinerary-days-add.js"></script>
+<script src="assets/js/itinerary-days-add-remove.js"></script>
 
 <?php include 'includes/footer.php'; ?>
