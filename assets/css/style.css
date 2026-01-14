@@ -77,9 +77,10 @@ a {
 }
 
 .top-right a {
-  color: black;
+  color: var(--blue);
   margin-left: 15px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .top-right a:hover {
@@ -89,28 +90,79 @@ a {
 /* Social icons */
 .top-social {
   display: flex;
-  gap: 12px;
+  /* gap: 12px; */
   margin-left: 10px;
 }
 
 .top-social a {
-  font-size: 18px;
+  font-size: 14px;
+  color: white;
+  background-color: var(--blue);
+  padding: 8px;
+  border-radius: 18px;
+  transition: all 0.3s ease;
 }
 
 .top-social a:hover {
-  color: var(--orange);
+  background-color: var(--orange);
+  color: white;
+  transform: translateY(-2px);
 }
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  .top-bar {
+    height: auto;
+    /* padding: 6px 0; */
+  }
+
   .top-bar-content {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .top-right {
+    justify-content: flex-end;
     flex-wrap: wrap;
-    justify-content: center;
+    margin-right: 10px;
+  }
+
+  .top-right a {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  .top-social {
+    gap: 0px;
+}
+
+  /* Hide text, show icons only */
+  .contact-link span {
+    display: none;
+  }
+
+  .contact-link {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  /* Make icons clickable & neat */
+  .contact-link i {
+    font-size: 18px;
+  }
+  
+  .contact-link.email{
+    margin-right: 5px;
+  }
+
+  /* Social icons spacing */
+  .top-social {
+    margin-left: 8px;
+  }
+
+  .top-social a {
+    font-size: 14px;
   }
 }
 
