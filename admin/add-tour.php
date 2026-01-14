@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
     $title      = $_POST['title'];
     $duration   = $_POST['duration'];
     $price      = $_POST['price'];
+    $price_usd = $_POST['price_usd'];
     $overview   = $_POST['overview'];
     $highlights = $_POST['highlights'];
     $includes   = $_POST['includes'];
@@ -36,23 +37,23 @@ if (isset($_POST['submit'])) {
     /* INSERT TOUR */
     $stmt = $conn->prepare("
         INSERT INTO tours
-        (title, duration, price, overview, highlights, includes, excludes, banner_image, pdf_file, status, is_popular)
+        (title, duration, price, price_usd, overview, highlights, includes, excludes, banner_image, pdf_file, status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->bind_param(
-    "ssdssssssii",
+    "sddsssssssi",
     $title,
     $duration,
-    $price,
+    $price,        // NPR
+    $price_usd,    // USD
     $overview,
     $highlights,
     $includes,
     $excludes,
     $banner,
     $pdf,
-    $status,
-    $is_popular
+    $status
     );
 
     if ($stmt->execute()) {
@@ -106,7 +107,9 @@ if (isset($_POST['submit'])) {
 
     <input type="text" name="title" placeholder="Tour Title" required>
     <input type="text" name="duration" placeholder="Duration (e.g. 7 Days)" required>
-    <input type="number" step="0.01" name="price" placeholder="Price (e.g. 85000)" required>
+    <input type="number" step="0.01" name="price" placeholder="Price in NPR (e.g. 85000)" required>
+    <input type="number" step="0.01" name="price_usd" placeholder="Price in USD (e.g. 799)">
+
 
     <textarea name="overview" placeholder="Trip Overview" required></textarea>
     <textarea name="highlights" placeholder="Trip Highlights (one per line)" required></textarea>
