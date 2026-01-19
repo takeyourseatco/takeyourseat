@@ -55,7 +55,7 @@
 
     <!-- RIGHT -->
     <div class="about-image">
-      <img src="assets/images/logo/TakeyourSeat_Logo-Color.png" alt="Travel in Nepal">
+      <img src="assets/images/TakeyourSeat_Logo-Color.png" alt="Travel in Nepal">
     </div>
 
   </div>
@@ -133,7 +133,7 @@
   <div class="container founder-flex">
 
     <div class="founder-image">
-      <img src="assets/images/team/Founder.jpg" alt="Founder - Take Your Seat">
+      <img src="assets/images/Founder.jpg" alt="Founder - Take Your Seat">
     </div>
 
     <div class="founder-content">

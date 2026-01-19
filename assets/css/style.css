@@ -1298,6 +1298,72 @@ a {
   }
 }
 
+/* TEAM SECTION */
+.team-section {
+  padding: 30px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.team-card {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+}
+
+.team-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: var(--blue);
+}
+
+.team-role {
+  font-size: 14px;
+  /* color: #777; */
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.role-description {
+  font-size: 14px;
+  color: #555;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .team-section {
+    padding: 60px 0;
+  }
+
+  .team-card img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* FOUNDER MESSAGE */
+
 .founder-message {
   padding: 30px 0;
 }
