@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
     /* INSERT TOUR */
     $stmt = $conn->prepare("
         INSERT INTO tours
-        (title, duration, price, price_usd, overview, highlights, includes, excludes, banner_image, pdf_file, status)
+        (title, duration, price, price_usd, overview, highlights, includes, excludes, banner_image, pdf_file, is_popular, status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
@@ -53,6 +53,7 @@ if (isset($_POST['submit'])) {
     $excludes,
     $banner,
     $pdf,
+    $is_popular,
     $status
     );
 
