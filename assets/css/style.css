@@ -1759,10 +1759,26 @@ a {
 
   .flight-image {
     order: 1;
+    display: flex;
+    justify-content: center;
   }
 
   .flight-details {
     order: 2;
+  }
+
+  .btn-primary-fp {
+    margin-top: 4%;
+    background: var(--blue);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .fp-btn {
+    display: flex;
+    justify-content: center;
   }
 }
 
