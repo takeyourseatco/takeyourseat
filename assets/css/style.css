@@ -1298,7 +1298,6 @@ a {
   }
 }
 
-
 .founder-message {
   padding: 30px 0;
 }
@@ -1328,14 +1327,15 @@ a {
 
 .founder-title {
   font-size: 14px;
-  color: #666;
+  /* color: #666; */
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .founder-content p {
-  color: #444;
+  /* color: #444; */
   line-height: 1.8;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .signature {

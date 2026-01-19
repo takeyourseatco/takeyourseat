@@ -5,10 +5,10 @@
     <div class="footer-box">
       <div class="footer-box-logo">
         <a href="index.php" class="logo">
-          <img src="assets/images/TakeyourSeat_Logo-Color.png" alt="Take Your Seat Logo">
-          <div class="footer-lgt">
+          <img src="assets/images/logo/Take your Seat Logo- White.png" alt="Take Your Seat Logo">
+          <!-- <div class="footer-lgt">
             <p>"LET'S GO TOGETHER"</p>
-          </div>
+          </div> -->
         </a>
       </div>
     </div>
@@ -81,4 +81,3 @@
 
 </body>
 </html>
-  
