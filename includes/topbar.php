@@ -3,15 +3,37 @@
 
     <!-- LEFT -->
     <div class="top-left">
-      <a href="/TakeYourSeat/index.php" class="logo">
-        <img src="/TakeYourSeat/assets/images/TakeyourSeat_Logo-Color.png" alt="Take Your Seat Logo">
+      <a href="index.php" class="logo">
+        <img src="assets/images/logo/TakeyourSeat_Logo-Color.png" alt="Take Your Seat Logo">
       </a>
     </div>
 
     <!-- RIGHT -->
     <div class="top-right">
-      <a href="tel:9779764667165"><i class="fa-solid fa-phone"></i> +977-9764667165</a>
-      <a href="mailto:takeyourseat18@gmail.com"><i class="fa-solid fa-envelope"></i> takeyourseat18@gmail.com</a>
+
+      <div class="top-contact-link">
+
+      <div class="topphonebox">
+        <div class="topphonebox-img">
+          <img src="assets/images/team/Founder.jpg" alt="">
+        </div>
+        <div class="topphonebox-phone">
+          <p class="talktoexpert">Talk to an Expert (Amrit)</p>
+          <a href="tel:9779764667165" class="contact-link phone">
+            <i class="fa-solid fa-phone"></i>
+            <span>+977-9764667165</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="topemailbox">
+        <p>Any Inquiries? Email Us</p>
+        <a href="mailto:takeyourseat18@gmail.com" class="contact-link email">
+          <i class="fa-solid fa-envelope"></i>
+          <span>takeyourseat18@gmail.com</span>
+        </a>
+      </div>
+      </div>
 
       <!-- SOCIAL ICONS -->
       <div class="top-social">
@@ -28,6 +50,8 @@
           <i class="fa-brands fa-whatsapp"></i>
         </a>
       </div>
+
+      
     </div>
 
   </div>
