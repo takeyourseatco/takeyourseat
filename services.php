@@ -26,15 +26,9 @@
 <!-- SERVICES OVERVIEW -->
 <section class="services-overview">
   <div class="container">
-    <h2 class="section-title">What We Offer</h2>
+    <h2 class="section-title-wwo">What We Offer</h2>
 
     <div class="services-grid">
-
-      <div class="service-card">
-        <span>🚍</span>
-        <h3>Bus Ticketing</h3>
-        <p>Easy bus ticketing for domestic & international destinations.</p>
-      </div>
 
       <div class="service-card">
         <span>🛫</span>
@@ -58,6 +52,12 @@
         <span>📄</span>
         <h3>Visa Services</h3>
         <p>Professional visa consultation & documentation support.</p>
+      </div>
+
+      <div class="service-card">
+        <span>🚍</span>
+        <h3>Bus Ticketing</h3>
+        <p>Easy bus ticketing for domestic & international destinations.</p>
       </div>
 
       <div class="service-card">
@@ -86,6 +86,58 @@
 <section class="service-details">
   <div class="container">
 
+    <div class="service-row ">
+      <div class="service-image">
+        <img src="assets/images/services/london.jpg" alt="Flight Booking">
+      </div>
+      <div class="service-content">
+        <h3>🛫 International Flight Booking</h3>
+        <p>
+          Professional air ticketing services with best fare options
+          and flexible travel planning.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div class="service-image">
+        <img src="assets/images/services/tours.jpg" alt="Tour Packages">
+      </div>
+      <div class="service-content">
+        <h3>🗺️ Tour Packages</h3>
+        <p>
+          Domestic and international tour packages designed for comfort,
+          adventure, and unforgettable experiences.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-image">
+        <img src="assets/images/services/trekking.jpg" alt="Himalayan Trekking">
+      </div>
+      <div class="service-content">
+        <h3>⛰️ Trek Packages</h3>
+        <p>
+          Guided trekking adventures to Everest, Annapurna,
+          Langtang and more.
+        </p>
+      </div>
+    </div>
+  
+    <div class="service-row reverse">
+      <div class="service-image">
+        <img src="assets/images/services/visa.jpg" alt="Visa Services">
+      </div>
+      <div class="service-content">
+        <h3>📄 Visa Services</h3>
+        <p>
+          Complete visa assistance including documentation,
+          application, and interview preparation.
+        </p>
+      </div>
+    </div>
+
     <div class="service-row">
       <div class="service-image">
         <img src="assets/images/services/bus.jpg" alt="Bus Ticketing">
@@ -101,59 +153,7 @@
 
     <div class="service-row reverse">
       <div class="service-image">
-        <img src="assets/images/services/london.jpg" alt="Flight Booking">
-      </div>
-      <div class="service-content">
-        <h3>🛫 International Flight Booking</h3>
-        <p>
-          Professional air ticketing services with best fare options
-          and flexible travel planning.
-        </p>
-      </div>
-    </div>
-
-    <div class="service-row">
-      <div class="service-image">
-        <img src="assets/images/services/tours.jpg" alt="Tour Packages">
-      </div>
-      <div class="service-content">
-        <h3>🗺️ Tour Packages</h3>
-        <p>
-          Domestic and international tour packages designed for comfort,
-          adventure, and unforgettable experiences.
-        </p>
-      </div>
-    </div>
-
-    <div class="service-row reverse">
-      <div class="service-image">
-        <img src="assets/images/services/trekking.jpg" alt="Himalayan Trekking">
-      </div>
-      <div class="service-content">
-        <h3>⛰️ Trek Packages</h3>
-        <p>
-          Guided trekking adventures to Everest, Annapurna,
-          Langtang and more.
-        </p>
-      </div>
-    </div>
-  
-    <div class="service-row">
-      <div class="service-image">
-        <img src="assets/images/services/visa.jpg" alt="Visa Services">
-      </div>
-      <div class="service-content">
-        <h3>📄 Visa Services</h3>
-        <p>
-          Complete visa assistance including documentation,
-          application, and interview preparation.
-        </p>
-      </div>
-    </div>
-
-    <div class="service-row reverse">
-      <div class="service-image">
-        <img src="assets/images/services/adventure.jpg" alt="Adventure Activities">
+        <img src="assets/images/services/camping.jpg" alt="Adventure Activities">
       </div>
       <div class="service-content">
         <h3>🏕️ Camping & Equipments</h3>
@@ -178,7 +178,7 @@
 
     <div class="service-row reverse">
       <div class="service-image">
-        <img src="assets/images/services/adventure.jpg" alt="Adventure Activities">
+        <img src="assets/images/services/wildlife.jpg" alt="Adventure Activities">
       </div>
       <div class="service-content">
         <h3>🦌 Wildlife Activities</h3>
