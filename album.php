@@ -55,14 +55,29 @@ $photos = mysqli_query($conn, "SELECT * FROM gallery_photos WHERE album_id='{$al
 
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
-  <span class="close"><i class="fa-solid fa-xmark fa-xs"></i></i></span>
 
-  <button class="nav prev"><i class="fa-solid fa-chevron-left fa-xs"></i></button>
+  <div class="lightbox-top">
+    <a id="downloadBtn" class="img-download-btn" download>
+      <i class="fa-solid fa-arrow-down fa-xs"></i>
+    </a>
+
+    <span class="close">
+      <i class="fa-solid fa-xmark fa-xs"></i>
+    </span>
+  </div>
+
+  <button class="nav prev">
+    <i class="fa-solid fa-chevron-left fa-xs"></i>
+  </button>
 
   <img class="lightbox-img" id="lightboxImg">
 
-  <button class="nav next"><i class="fa-solid fa-chevron-right fa-xs"></i></button>
+  <button class="nav next">
+    <i class="fa-solid fa-chevron-right fa-xs"></i>
+  </button>
+
 </div>
+
 
 
 <script src="assets/js/album-lightbox.js"></script>
