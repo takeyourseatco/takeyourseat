@@ -51,7 +51,7 @@
   <div class="container">
 
     <h2 class="section-title">Explore Our Latest and Popular Packages</h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle-explore">
       Take Your Seat offers carefully designed packages focusing on comfort,
       safety, and unforgettable travel experiences.
     </p>
@@ -76,20 +76,27 @@
           while ($tour = mysqli_fetch_assoc($query)) {
           ?>
             <div class="tour-card">
-              <img
-                src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>"
-                alt="<?= htmlspecialchars($tour['title']); ?>"
-              >
+              <div class="tour-card-img">
+                <?php if ($tour['is_popular'] == 1): ?>
+                  <span class="popular-badge-home"><i class="fa-solid fa-fire"></i> Popular</span>
+                <?php endif; ?>
+
+                <img
+                  src="admin/uploads/images/tours/<?= $tour['banner_image']; ?>"
+                  alt="<?= htmlspecialchars($tour['title']); ?>"
+                >
+              </div>
 
               <div class="tour-info">
                 <h3><?= htmlspecialchars($tour['title']); ?></h3>
-                <p>NPR <?= htmlspecialchars($tour['price']); ?></p>
+                <p>NPR <?= htmlspecialchars($tour['price']); ?> | USD $<?= htmlspecialchars($tour['price_usd']); ?></p>
               </div>
 
               <div class="tour-card-btn">
                 <a href="tour-details.php?id=<?= $tour['id']; ?>">View Details</a>
               </div>
             </div>
+
           <?php } ?>
 
         </div>
@@ -480,3 +487,4 @@ $clients = mysqli_query(
 
 
 <?php include 'includes/footer.php'; ?>
+
