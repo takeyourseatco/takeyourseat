@@ -313,7 +313,7 @@
   <div class="container">
 
     <h2 class="section-title">What Our Clients Say</h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle-testimonial">
       Real experiences from travelers who trusted Take Your Seat
     </p>
 
@@ -325,41 +325,30 @@
 
       <div class="testimonial-viewport">
         <div class="testimonial-track" id="testimonialTrack">
+          <?php
+          $testimonials = mysqli_query(
+              $conn,
+              "SELECT * FROM testimonials WHERE status = 1 ORDER BY id DESC"
+          );
+          ?>
 
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="review">Amazing service! Our Nepal tour was perfectly organized.</p>
-            <h4>Rahul Sharma</h4>
-            <span>Tour Package – Nepal</span>
-          </div>
+          <?php while($t = mysqli_fetch_assoc($testimonials)): ?>
 
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="review">Very professional flight booking service.</p>
-            <h4>Sunita Karki</h4>
-            <span>Flight Ticketing</span>
-          </div>
+            <div class="testimonial-card">
+              <div class="stars">
+                <?= str_repeat('★', $t['rating']); ?>
+              </div>
 
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="review">Visa process was smooth and well guided.</p>
-            <h4>Ajay Singh</h4>
-            <span>Visa Service</span>
-          </div>
+              <p class="review">
+                <?= htmlspecialchars($t['review']); ?>
+              </p>
 
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="review">Best travel company in Nepal. Highly recommended.</p>
-            <h4>Ramesh Adhikari</h4>
-            <span>Tour & Flights</span>
-          </div>
+              <h4><?= htmlspecialchars($t['name']); ?></h4>
 
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="review">Quick response and friendly support team.</p>
-            <h4>Pooja Shrestha</h4>
-            <span>Visa & Flights</span>
-          </div>
+              <span><?= htmlspecialchars($t['service']); ?></span>
+            </div>
+
+          <?php endwhile; ?>
 
         </div>
       </div>
@@ -487,4 +476,5 @@ $clients = mysqli_query(
 
 
 <?php include 'includes/footer.php'; ?>
+
 
