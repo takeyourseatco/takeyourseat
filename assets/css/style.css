@@ -20,6 +20,15 @@ h1, h2, h3, .headline {
   font-family: 'Poppins', sans-serif;
 }
 
+@font-face {
+  font-family: 'ComicSansCustom';
+  src: url('../fonts/ComicSansMS.woff') format('woff'),
+       url('../fonts/COMICBD.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   padding-top: 120px;
   color: #333;
@@ -2010,4 +2019,5 @@ a {
   .footer-social {
     justify-content: center;
   }
+
 }
