@@ -10,36 +10,27 @@
 <?php include 'config/db.php'; ?>
 
 <!-- HERO SECTION -->
-<section class="home-hero">
+<section class="home-hero" style="background-image: url('assets/images/home_page/home_page_4_2.jpeg');">
   <div class="hero-overlay">
-    <div class="container">
+    <div class="container-hero-content">
 
-      <!-- HERO SEARCH BAR -->
+      <!-- <img src="assets/images/logo/airplane-icon_white.png" class="airplane-icon" alt="Airplane"> -->
+
       <div class="hero-search">
-        <form action="#" method="GET">
-          <input type="text" id="tourSearch" name="tour" placeholder="Search tours">
-
-          <!--
-          <select name="duration">
-            <option value="">Duration</option>
-            <option value="3-5">3–5 Days</option>
-            <option value="6-10">6–10 Days</option>
-            <option value="10+">10+ Days</option>
-          </select>
-          -->
-
+        <form>
+          <input type="text" id="tourSearch" placeholder="Search tours">
           <button type="submit" disabled>
-            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
         <div id="searchResults" class="search-results"></div>
       </div>
 
-      <h1 class="hero-lgt">LET'S GO TOGETHER</h1>
+      <p class="hero-lgt">Let's go together</p>
 
-      <div class="view-btn">
-        <a href="tours.php" class="btn-primary">View Tour Packages</a>
-      </div>
+      <!-- <div class="view-btn">
+        <a href="tours.php" class="btn-primary-vtp">View Tour Packages</a>
+      </div> -->
 
     </div>
   </div>
@@ -476,5 +467,6 @@ $clients = mysqli_query(
 
 
 <?php include 'includes/footer.php'; ?>
+
 
 
