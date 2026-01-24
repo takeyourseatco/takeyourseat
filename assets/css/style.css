@@ -533,6 +533,24 @@ a {
 
 }
 
+.tour-card-img {
+  position: relative;
+}
+
+.popular-badge-home {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /* left: 10px; */
+  background: #ff9800;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 2;
+}
+
 .tour-card img {
   width: 100%;
   height: 220px;
