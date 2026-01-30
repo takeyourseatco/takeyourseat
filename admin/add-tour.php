@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
             $itStmt->close();
         }
 
-        header("Location: manage-tours.php");
+        header("Location: manage-tours");
         exit();
 
     } else {
