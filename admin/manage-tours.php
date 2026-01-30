@@ -18,7 +18,7 @@ if(isset($_GET['delete'])){
   // }
 
   mysqli_query($conn, "DELETE FROM tours WHERE id=$id");
-  header("Location: manage-tours.php");
+  header("Location: manage-tours");
 }
 ?>
 
@@ -33,6 +33,7 @@ if(isset($_GET['delete'])){
         <th>Title</th>
         <th>Duration</th>
         <th>Price</th>
+        <th>Price USD</th>
         <th >Overview</th>
         <th>Highlights</th>
         <th>Itinerary</th>
@@ -69,6 +70,7 @@ if(isset($_GET['delete'])){
         <td><?= $row['title'] ?></td>
         <td><?= $row['duration'] ?></td>
         <td><?= $row['price'] ?></td>
+        <td><?= $row['price_usd'] ?></td>
         <td>
           <?= implode(' ', array_slice(explode(' ', $row['overview']), 0, 5)); ?>...
         </td>
@@ -124,7 +126,7 @@ if(isset($_GET['delete'])){
         ?>
 
         <td class="action-col">
-          <a href="edit-tour.php?id=<?= $row['id'] ?>" class="btn-edit">Edit</a>
+          <a href="edit-tour?id=<?= $row['id'] ?>" class="btn-edit">Edit</a>
           <a href="?delete=<?= $row['id'] ?>"
             onclick="return confirm('Delete this tour?')"
             class="btn-delete">
