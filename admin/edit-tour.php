@@ -21,6 +21,7 @@ if (isset($_POST['update'])) {
     $title      = $_POST['title'];
     $duration   = $_POST['duration'];
     $price      = $_POST['price'];
+    $price_usd = $_POST['price_usd'];
     $overview   = $_POST['overview'];
     $highlights = $_POST['highlights'];
     $includes   = $_POST['includes'];
@@ -48,26 +49,37 @@ if (isset($_POST['update'])) {
     /* UPDATE TOUR */
     $stmt = $conn->prepare("
         UPDATE tours SET
-            title=?, duration=?, price=?, overview=?, highlights=?,
-            includes=?, excludes=?, banner_image=?, pdf_file=?, status=?, is_popular = ?
-        WHERE id=?
+          title = ?,
+          duration = ?,
+          price = ?,
+          price_usd = ?,
+          overview = ?,
+          highlights = ?,
+          includes = ?,
+          excludes = ?,
+          banner_image = ?,
+          pdf_file = ?,
+          is_popular = ?,
+          status = ?
+        WHERE id = ?
     ");
 
     $stmt->bind_param(
-    "sssssssssiii",
-    $title,
-    $duration,
-    $price,
-    $overview,
-    $highlights,
-    $includes,
-    $excludes,
-    $image,
-    $pdfName,
-    $status,
-    $is_popular,
-    $id
-  );
+      "sddssssssssii",
+      $title,
+      $duration,
+      $price,
+      $price_usd,
+      $overview,
+      $highlights,
+      $includes,
+      $excludes,
+      $image,
+      $pdfName,
+      $is_popular,
+      $status,
+      $id
+    );
 
 
     if ($stmt->execute()) {
@@ -101,7 +113,7 @@ if (isset($_POST['update'])) {
             $itStmt->close();
         }
 
-        header("Location: manage-tours.php");
+        header("Location: manage-tours");
         exit();
     }
 }
@@ -116,7 +128,9 @@ if (isset($_POST['update'])) {
 
     <input type="text" name="title" placeholder="Tour Title" value="<?= $data['title'] ?>" required>
     <input type="text" name="duration" placeholder="Duration (e.g. 7 Days)" value="<?= $data['duration'] ?>" required>
-    <input type="text" name="price" placeholder="Price (e.g. NPR 85,000)" value="<?= $data['price'] ?>" required>
+    <input type="text" name="price" placeholder="Price in NPR" value="<?= $data['price'] ?>" required>
+    <input type="number" step="0.01" name="price_usd" placeholder="Price in USD" value="<?= $data['price_usd']; ?>">
+
 
     <textarea name="overview" placeholder="Trip Overview" required><?= $data['overview'] ?></textarea>
     <textarea name="highlights" placeholder="Trip Highlights (one per line)" required><?= $data['highlights'] ?></textarea>
