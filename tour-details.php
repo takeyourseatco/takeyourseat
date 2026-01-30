@@ -53,6 +53,11 @@ function renderList($text) {
     <div class="container">
       <h1><?= $tour['title'] ?></h1>
       <p><?= $tour['duration'] ?> Days</p>
+
+      <?php if ($tour['is_popular'] == 1): ?>
+        <span class="popular-badge-detail"><i class="fa-solid fa-fire"></i> Popular</span>
+      <?php endif; ?>
+      
     </div>
   </div>
 
