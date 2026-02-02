@@ -177,7 +177,7 @@ a {
 
 /* LOGO */
 .logo img {
-  height: 45px;       /* adjust if needed */
+  height: 45px;       
   width: auto;
   display: block;
 }
@@ -234,7 +234,7 @@ a {
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: var(--blue);
+  background: var(--orange);
   transition: width 0.3s ease;
 }
 
@@ -243,7 +243,7 @@ a {
 }
 
 .nav-menu li a:hover {
-  color: var(--blue);
+  color: var(--orange);
 }
 
 /* HAMBURGER */
@@ -258,7 +258,7 @@ a {
 .hamburger span {
   width: 26px;
   height: 3px;
-  background: #fff;
+  background: white;
   border-radius: 3px;
   transition: all 0.35s ease;
 }
@@ -279,11 +279,11 @@ a {
 /* MOBILE MENU (BELOW TOP BAR + NAVBAR) */
 .mobile-menu {
   position: fixed;
-  top: 120px; /* 🔥 adjust if your topbar height changes */
+  top: 120px; 
   right: -100%;
-  width: 260px;
+  width: 200px;
   height: calc(100vh - 120px);
-  background: var(--orange);
+  background: var(--blue);
   padding-top: 30px;
   transition: right 0.4s ease;
   z-index: 1000;
@@ -293,6 +293,7 @@ a {
 .mobile-menu ul {
   list-style: none;
   padding: 0 20px;
+  text-align: center;
 }
 
 .mobile-menu li {
@@ -317,13 +318,13 @@ a {
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: var(--blue);
+  background: var(--orange);
   transition: width 0.3s ease;
 }
 
 /* HOVER STATE */
 .mobile-menu li a:hover {
-  color: var(--blue);
+  color: var(--orange);
 }
 
 .mobile-menu li a:hover::after {
@@ -344,6 +345,11 @@ a {
   .hamburger {
     display: flex;
   }
+
+  /* .main-navbar{
+    display: none;
+  } */
+
 }
 
 
