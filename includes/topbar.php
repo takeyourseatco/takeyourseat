@@ -3,7 +3,7 @@
 
     <!-- LEFT -->
     <div class="top-left">
-      <a href="index.php" class="logo">
+      <a href="/TakeYourSeat" class="logo">
         <img src="assets/images/logo/TakeyourSeat_Logo-Color.png" alt="Take Your Seat Logo">
       </a>
     </div>
@@ -18,8 +18,8 @@
           <img src="assets/images/team/Founder.jpg" alt="">
         </div>
         <div class="topphonebox-phone">
-          <p class="talktoexpert">Talk to an Expert (Amrit)</p>
-          <a href="tel:9779764667165" class="contact-link phone">
+          <p class="talktoexpert">Connect with Our Expert – Amrit</p>
+          <a href="tel:+9779764667165" class="contact-link phone">
             <i class="fa-solid fa-phone"></i>
             <span>+977-9764667165</span>
           </a>
@@ -33,6 +33,13 @@
           <span>takeyourseat18@gmail.com</span>
         </a>
       </div>
+
+      <div class="topwhatsappbox">
+        <a href="https://wa.me/+9779865507624" target="_blank" aria-label="WhatsApp" class="contact-link whatsapp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+
       </div>
 
       <!-- SOCIAL ICONS -->
@@ -46,10 +53,17 @@
         <a href="https://www.tiktok.com/@takeyourseat_tours" target="_blank" aria-label="Tiktok">
           <i class="fa-brands fa-tiktok"></i>
         </a>
-        <a href="https://wa.me/9779865507624" target="_blank" aria-label="WhatsApp">
+        <a href="https://wa.me/+9779865507624" target="_blank" aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
       </div>
+
+      <!-- HAMBURGER -->
+    <!-- <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div> -->
 
       
     </div>
