@@ -78,7 +78,7 @@ a {
 .top-right {
   display: flex;
   align-items: center;
-  /* gap: 12px; */
+  gap: 12px;
 }
 
 .top-left span {
@@ -86,8 +86,8 @@ a {
 }
 
 .top-right a {
-  color: var(--blue);
-  margin-left: 15px;
+  color: #374151;
+  /* margin-left: 15px; */
   font-size: 16px;
   font-weight: bold;
 }
@@ -96,17 +96,49 @@ a {
   color: var(--orange);
 }
 
+
+.top-contact-link {
+  gap: 20px;
+  display: flex;
+}
+
+.topphonebox {
+  display: flex;
+}
+
+.topwhatsappbox{
+  display: none;
+}
+
+.topphonebox-img img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  border: 3px solid var(--blue);
+}
+
+.talktoexpert, .topemailbox p{
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
+  /* margin-right: 10px; */
+  margin-bottom: 6px;
+  text-align: center;
+}
+
 /* Social icons */
 .top-social {
   display: flex;
-  /* gap: 12px; */
-  margin-left: 10px;
+  gap: 12px;
+  /* margin-left: 10px; */
 }
 
 .top-social a {
   font-size: 14px;
   color: white;
-  background-color: var(--blue);
+  background-color: #374151;
   padding: 8px;
   border-radius: 18px;
   transition: all 0.3s ease;
@@ -119,9 +151,16 @@ a {
 }
 
 /* Mobile responsive */
-@media (max-width: 768px) {
+@media (max-width: 935px) {
+
+  /* .header-wrapper{
+    padding-bottom: 0px;
+  } */
+
+
+
   .top-bar {
-    height: auto;
+    height: 60px;
     /* padding: 6px 0; */
   }
 
@@ -131,20 +170,39 @@ a {
     align-items: center;
   }
 
+  /* .top-left .logo img{
+    display: none;
+    width: 80%;
+    height: auto;
+  } */
+
   .top-right {
     justify-content: flex-end;
     flex-wrap: wrap;
-    margin-right: 10px;
+    /* margin-right: 20px; */
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    /* gap: 6px; */
   }
 
   .top-right a {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 18px;
   }
 
   .top-social {
-    gap: 0px;
-}
+    gap: 12px;
+  }
+
+
+  .topphonebox .topphonebox-img,  .topphonebox .topphonebox-phone p{
+    display: none;
+  }
+
+    .topemailbox p{
+    display: none;
+  }
 
   /* Hide text, show icons only */
   .contact-link span {
@@ -152,8 +210,8 @@ a {
   }
 
   .contact-link {
-    margin-left: 10px;
-    font-size: 18px;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Make icons clickable & neat */
@@ -161,18 +219,51 @@ a {
     font-size: 18px;
   }
   
-  .contact-link.email{
-    margin-right: 5px;
+  /* .contact-link.email{
+    margin-right: 25px;
+  } */
+
+  .top-contact-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    gap: 6px;
+  }
+
+  .top-contact-link i{
+    font-size: 25px;
   }
 
   /* Social icons spacing */
-  .top-social {
+  /* .top-social {
     margin-left: 8px;
-  }
+  } */
 
   .top-social a {
     font-size: 14px;
   }
+}
+
+@media (max-width: 768px) {
+  .top-social{
+    display: none;
+  }
+
+  .topwhatsappbox{
+    display: inline;
+  }
+
+  .top-contact-link i{
+    font-size: 25px;
+  }
+/* 
+  .topwhatsappbox i{
+    color: white;
+    background-color: #374151;
+    padding: 12px;
+    border-radius: 18px;
+    transition: all 0.3s ease;
+  } */
 }
 
 /* LOGO */
