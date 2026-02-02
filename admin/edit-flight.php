@@ -13,6 +13,7 @@ if(isset($_POST['update'])){
   $to_city = $_POST['to_city'];
   $description = $_POST['description'];
   $image = $data['image'];
+  $group_fare = $_POST['group_fare'];
   $status = $_POST['status'];
 
 
@@ -34,11 +35,12 @@ if(isset($_POST['update'])){
     to_city='$to_city',
     description='$description',
     image='$image',
+    is_group_fare='$group_fare',
     status='$status'
     WHERE id=$id
   ");
 
-  header("Location: manage-flights.php");
+  header("Location: manage-flights");
 }
 ?>
 
@@ -57,6 +59,12 @@ if(isset($_POST['update'])){
 
         <label>Change Image (optional)</label>
         <input type="file" name="image" accept="image/*">
+
+        <label>Group Fare</label>
+        <select name="group_fare">
+          <option value="1" <?= ($data['is_group_fare']==1)?'selected':'' ?>>Yes</option>
+          <option value="0" <?= ($data['is_group_fare']==0)?'selected':'' ?>>No</option>
+        </select>
 
         <label>Status</label>
         <select name="status">
