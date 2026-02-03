@@ -112,11 +112,22 @@
 <section class="home-flights">
   <div class="container">
     <h2 class="section-title">International Flight Booking</h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle-flight">
       Best airfare deals with professional ticketing assistance
     </p>
 
-    <div class="flight-grid">
+
+
+    <div class="flight-slider-wrapper">
+
+      <!-- PREV BUTTON -->
+      <button class="slider-btn prev" id="flightPrevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <!-- VIEWPORT -->
+      <div class="flight-slider-viewport">
+        <div class="flight-slider-track" id="flightTrack">
 
       <?php
       $flights = mysqli_query($conn, 
@@ -126,8 +137,18 @@
       while($flight = mysqli_fetch_assoc($flights)){
       ?>
         <div class="flight-card">
-          <img src="admin/uploads/images/flights/<?= $flight['image']; ?>" 
-               alt="<?= $flight['from_city'].' to '.$flight['to_city']; ?>">
+          <div class="flight-card-img">
+
+            <?php if ($flight['is_group_fare'] == 1): ?>
+              <span class="group-fare-badge">
+                <i class="fa-solid fa-users"></i> Group Fare
+              </span>
+            <?php endif; ?>
+
+            <img src="admin/uploads/images/flights/<?= $flight['image']; ?>"
+                alt="<?= $flight['from_city'].' to '.$flight['to_city']; ?>">
+
+          </div>
 
           <div class="flight-info">
             <h3>
@@ -144,7 +165,7 @@
             <?php } ?> -->
 
             <!-- Details Page -->
-            <a href="flight-details.php?id=<?= $flight['id']; ?>" 
+            <a href="flight-details?id=<?= $flight['id']; ?>" 
                class="btn-primary">
               View Details
             </a>
@@ -152,10 +173,17 @@
         </div>
       <?php } ?>
       
+      </div>
     </div>
 
-    <!-- CTA -->
-    <a href="flights.php" class="btn-primary-flight">
+      <!-- NEXT BUTTON -->
+      <button class="slider-btn next" id="flightNextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+    </div>
+
+    <a href="flights" class="btn-primary-flight">
        More
     </a>
   </div>

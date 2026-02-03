@@ -18,7 +18,7 @@ if(isset($_GET['delete'])){
   // }
 
   mysqli_query($conn, "DELETE FROM flights WHERE id=$id");
-  header("Location: manage-flights.php");
+  header("Location: manage-flights");
 }
 ?>
 
@@ -34,6 +34,7 @@ if(isset($_GET['delete'])){
         <th>To City</th>
         <th>Description</th>
         <th>Image</th>
+        <th>Group Fare</th>
         <th>Status</th>
         <th>Action</th>
 
@@ -58,7 +59,13 @@ if(isset($_GET['delete'])){
           <img src="uploads/images/flights/<?= $row['image'] ?>" height="50">
         </td>
 
-          </td>
+        <?php
+          if($row['is_group_fare'] == 1){
+            echo '<td>Yes</td>';
+          } else {
+            echo '<td>No</td>';
+          }
+        ?>
         
         <?php
           if($row['status'] == 1){
@@ -69,7 +76,7 @@ if(isset($_GET['delete'])){
         ?>
 
         <td class="action-col-flight">
-          <a href="edit-flight.php?id=<?= $row['id'] ?>" class="btn-edit">Edit</a>
+          <a href="edit-flight?id=<?= $row['id'] ?>" class="btn-edit">Edit</a>
           <a href="?delete=<?= $row['id'] ?>"
             onclick="return confirm('Delete this flight?')"
             class="btn-delete">

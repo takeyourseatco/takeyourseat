@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
     $from   = $_POST['from_city'];
     $to     = $_POST['to_city'];
     $desc   = $_POST['description'];
+    $group_fare  = $_POST['group_fare'];
     $status = $_POST['status'];
 
     /* IMAGE UPLOAD */
@@ -25,21 +26,22 @@ if (isset($_POST['submit'])) {
     /* PREPARED STATEMENT */
     $stmt = $conn->prepare(
         "INSERT INTO flights 
-        (from_city, to_city, description, image, status) 
-        VALUES (?, ?, ?, ?, ?)"
+        (from_city, to_city, description, image, is_group_fare, status) 
+        VALUES (?, ?, ?, ?, ?, ?)"
     );
 
     $stmt->bind_param(
-        "ssssi",
+        "ssssii",
         $from,
         $to,
         $desc,
         $imageName,
+        $group_fare,
         $status
     );
 
     if ($stmt->execute()) {
-        header("Location: manage-flights.php");
+        header("Location: manage-flights");
         exit();
     } else {
         echo "<script>alert('Error adding flight');</script>";
@@ -63,6 +65,12 @@ if (isset($_POST['submit'])) {
 
         <label>Flight Image</label>
         <input type="file" name="image" accept="image/*" required>
+
+        <label>Group Fare</label>
+        <select name="group_fare" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
 
         <label>Status</label>
         <select name="status" required>
