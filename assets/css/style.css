@@ -1985,13 +1985,13 @@ a {
 /* FLIGHT DETAILS PAGE */
 .flight-details-section {
   padding: 20px 0;
-  background: white;
+  background: #f9fbfd;
 }
 
 .flight-details-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 50px;
+  /* gap: 50px; */
   align-items: center;
 }
 
@@ -2001,6 +2001,24 @@ a {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
+
+.flight-image {
+  position: relative;
+}
+
+.group-fare-badge-details {
+  background: #ff9800;
+  color: #fff;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.group-fare-badge i {
+  font-size: 13px;
+}
+
 
 /* CONTENT */
 .flight-details h1 {
@@ -2020,14 +2038,34 @@ a {
 }
 
 .flight-desc {
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
   line-height: 1.7;
+  margin-top: 12px;
+
+}
+
+.fp-btn{
+  margin-top: 12px;
+}
+
+.btn-primary-fp {
+  /* margin-top: 4%; */
+  background: var(--blue);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.btn-primary-fp:hover {
+  background: var(--orange);
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .flight-details-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .flight-image {
@@ -2055,6 +2093,12 @@ a {
   }
 }
 
+@media (max-width: 576px) {
+  .group-fare-badge-details {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
 
 /* FOOTER */
 .site-footer {
