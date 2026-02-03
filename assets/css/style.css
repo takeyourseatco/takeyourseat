@@ -879,6 +879,58 @@ a {
   background: var(--orange);
 }
 
+/* FLIGHT SLIDER */
+.flight-slider-wrapper {
+  position: relative;
+  /* display: flex; */
+  align-items: center;
+}
+
+.flight-slider-viewport {
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.flight-slider-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Hide flight slider buttons by default (desktop) */
+.flight-slider-wrapper .slider-btn {
+  display: none;
+}
+
+/* MOBILE SLIDER */
+@media (max-width: 768px) {
+
+  .flight-slider-wrapper {
+    display: flex;
+  }
+
+  .flight-slider-track {
+    display: flex;
+    gap: 0;
+    transition: transform 0.4s ease;
+  }
+
+  .flight-card {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .flight-slider-wrapper .slider-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .flight-slider-wrapper .slider-btn.prev, .flight-slider-wrapper .slider-btn.next {
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 /* STATS SECTION */
 .stats-section {
