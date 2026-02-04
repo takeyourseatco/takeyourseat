@@ -1351,6 +1351,44 @@ a {
   margin-bottom: 15px;
 }
 
+@media (min-width: 769px) {
+  .tour-layout {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .tour-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0px;
+  }
+
+  .price-box {
+    order: 1;
+  }
+
+  .tour-content {
+    order: 2;
+  }
+
+  .download-box {
+    order: 3;
+    margin-top: 20px;
+  }
+
+  .inquiry-box {
+    order: 4;
+
+    margin-bottom: 0px;
+  }
+
+  .tour-sidebar {
+    display: contents;
+  }
+}
+
 /* --------------------------------- */
 
 .page-banner .overlay {
