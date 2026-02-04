@@ -1,9 +1,3 @@
-<?php include 'includes/header.php'; ?>
-<div class="header-wrapper">
-    <?php include 'includes/topbar.php'; ?>
-    <?php include 'includes/navbar.php'; ?>
-</div>
-
 <?php
 include 'config/db.php';
 
@@ -11,25 +5,39 @@ $id = $_GET['id'];
 $tour = mysqli_fetch_assoc(
   mysqli_query($conn, "SELECT * FROM tours WHERE id=$id")
 );
-?>
 
-<?php
+if (isset($_POST['send_inquiry'])) {
 
-if(isset($_POST['send_inquiry'])){
   $tour_name = mysqli_real_escape_string($conn, $_POST['tour_name']);
-  $name = mysqli_real_escape_string($conn, $_POST['name']);
-  $email = mysqli_real_escape_string($conn, $_POST['email']);
-  $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-  $message = mysqli_real_escape_string($conn, $_POST['message']);
-  
+  $name      = mysqli_real_escape_string($conn, $_POST['name']);
+  $email     = mysqli_real_escape_string($conn, $_POST['email']);
+  $phone     = mysqli_real_escape_string($conn, $_POST['phone']);
+  $message   = mysqli_real_escape_string($conn, $_POST['message']);
+
   $query = "INSERT INTO inquiries (tour_name, name, email, phone, message)
             VALUES ('$tour_name', '$name', '$email', '$phone', '$message')";
 
-  if(mysqli_query($conn, $query)){
-    $success = "Thank you! Your inquiry has been sent.";
+  if (mysqli_query($conn, $query)) {
+
+    require_once 'includes/fcm.php';
+    sendFCMToAdmins(
+      $conn,
+      "New Tour Inquiry",
+      "New inquiry received for " . $tour_name
+    );
+
+    header("Location: tour-details?id=$id&success=1");
+    exit;
   }
 }
 ?>
+
+<?php include 'includes/header.php'; ?>
+<div class="header-wrapper">
+    <?php include 'includes/topbar.php'; ?>
+    <?php include 'includes/navbar.php'; ?>
+</div>
+
 
 <?php
 function renderList($text) {
@@ -51,15 +59,24 @@ function renderList($text) {
   
   <div class="overlay">
     <div class="container">
+
+      <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+        <div class="success-box" id="successBox">
+          <strong>Success!</strong>
+          <p>Your inquiry has been sent successfully. We’ll contact you soon.</p>
+        </div>
+      <?php endif; ?>
+
       <h1><?= $tour['title'] ?></h1>
       <p><?= $tour['duration'] ?> Days</p>
 
       <?php if ($tour['is_popular'] == 1): ?>
         <span class="popular-badge-detail"><i class="fa-solid fa-fire"></i> Popular</span>
       <?php endif; ?>
-      
+
     </div>
   </div>
+
 
 </section>
 
@@ -67,10 +84,9 @@ function renderList($text) {
 <!-- MAIN CONTENT -->
 <section class="container tour-layout">
 
-  <!-- LEFT CONTENT -->
   <div class="tour-content">
 
-    <h2>Trip Overview</h2>
+    <h2 class="trip-overview">Trip Overview</h2>
     <p>
       <?= $tour['overview'] ?>
     </p>
@@ -113,25 +129,21 @@ function renderList($text) {
 
   </div>
 
-  <!-- RIGHT SIDEBAR (IMPORTANT – LIKE REFERENCE) -->
-  <aside class="tour-sidebar">
+<div class="tour-sidebar">
 
-    <!-- PACKAGE DOWNLOAD -->
-    <div class="download-box">
-      <h3>Trip Brochure</h3>
-      <p>Download the full itinerary and trip details.</p>
+  <div class="price-box sidebar-price">
+    <h3>Trip Cost</h3>
+    <p><strong>From:</strong> NPR <?= $tour['price'] ?> | USD $<?= $tour['price_usd'] ?></p>
+  </div>
 
-      <a href="download-pdf.php?file=<?= urlencode($tour['pdf_file']); ?>"
-        class="download-btn">
-        <i class="fas fa-file-pdf"></i> Download PDF
-      </a>
+  <div class="download-box sidebar-download">
+    <h3>Trip Brochure</h3>
+    <p>Download the full itinerary and trip details.</p>
 
-    </div>
-
-    <div class="price-box">
-      <h3>Trip Cost</h3>
-      <p><strong>From:</strong> NPR <?= $tour['price'] ?></p>
-    </div>
+    <a href="download-pdf?file=<?= urlencode($tour['pdf_file']); ?>" class="download-btn">
+      <i class="fas fa-file-pdf"></i> Download PDF
+    </a>
+  </div>
 
     <div class="inquiry-box">
       <h3>Trip Inquiry</h3>
