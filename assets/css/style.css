@@ -64,6 +64,30 @@ a {
   background: var(--orange);
 }
 
+/* .form-group {
+  margin-bottom: 14px;
+} */
+
+/* .form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+} */
+
+.form-group.error input,
+.form-group.error textarea {
+  border-color: red;
+}
+
+.form-group small.error {
+  color: red;
+  font-size: 13px;
+  display: block;
+  /* margin-top: 4px; */
+  margin-bottom: 10px;
+}
+
 /* TOP BAR */
 .top-bar {
   height: 60px;
@@ -2444,3 +2468,4 @@ a {
   display: flex;
   justify-content: center;
 }
+
