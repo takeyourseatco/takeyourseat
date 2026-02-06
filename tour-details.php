@@ -34,13 +34,14 @@ if (isset($_POST['send_inquiry'])) {
 
 <?php include 'includes/header.php'; ?>
 <div class="header-wrapper">
-    <?php include 'includes/topbar.php'; ?>
-    <?php include 'includes/navbar.php'; ?>
+  <?php include 'includes/topbar.php'; ?>
+  <?php include 'includes/navbar.php'; ?>
 </div>
 
 
 <?php
-function renderList($text) {
+function renderList($text)
+{
   $items = preg_split("/\r\n|\n|\r/", trim($text));
   echo "<ul>";
   foreach ($items as $item) {
@@ -56,7 +57,7 @@ function renderList($text) {
 <!-- BANNER -->
 <section class="tour-banner"
   style="background-image: url('admin/uploads/images/tours/<?= $tour['banner_image'] ?>');">
-  
+
   <div class="overlay">
     <div class="container">
 
@@ -99,21 +100,21 @@ function renderList($text) {
     <h2>Detailed Itinerary</h2>
 
     <div class="itinerary-list">
-    <?php
-    $itinerary = mysqli_query(
-      $conn,
-      "SELECT * FROM tour_itineraries
+      <?php
+      $itinerary = mysqli_query(
+        $conn,
+        "SELECT * FROM tour_itineraries
       WHERE tour_id = $id
       ORDER BY day_number ASC"
-    );
+      );
 
-    while ($day = mysqli_fetch_assoc($itinerary)) {
-    ?>
-      <div class="itinerary-day">
-        <h3>Day <?= $day['day_number']; ?>: <?= htmlspecialchars($day['title']); ?></h3>
-        <p><?= nl2br(htmlspecialchars($day['description'])); ?></p>
-      </div>
-    <?php } ?>
+      while ($day = mysqli_fetch_assoc($itinerary)) {
+      ?>
+        <div class="itinerary-day">
+          <h3>Day <?= $day['day_number']; ?>: <?= htmlspecialchars($day['title']); ?></h3>
+          <p><?= nl2br(htmlspecialchars($day['description'])); ?></p>
+        </div>
+      <?php } ?>
     </div>
 
 
@@ -129,45 +130,58 @@ function renderList($text) {
 
   </div>
 
-<div class="tour-sidebar">
+  <div class="tour-sidebar">
 
-  <div class="price-box sidebar-price">
-    <h3>Trip Cost</h3>
-    <p><strong>From:</strong> NPR <?= $tour['price'] ?> | USD $<?= $tour['price_usd'] ?></p>
-  </div>
+    <div class="price-box sidebar-price">
+      <h3>Trip Cost</h3>
+      <p><strong>From:</strong> NPR <?= $tour['price'] ?> | USD $<?= $tour['price_usd'] ?></p>
+    </div>
 
-  <div class="download-box sidebar-download">
-    <h3>Trip Brochure</h3>
-    <p>Download the full itinerary and trip details.</p>
+    <div class="download-box sidebar-download">
+      <h3>Trip Brochure</h3>
+      <p>Download the full itinerary and trip details.</p>
 
-    <a href="download-pdf?file=<?= urlencode($tour['pdf_file']); ?>" class="download-btn">
-      <i class="fas fa-file-pdf"></i> Download PDF
-    </a>
-  </div>
+      <a href="download-pdf?file=<?= urlencode($tour['pdf_file']); ?>" class="download-btn">
+        <i class="fas fa-file-pdf"></i> Download PDF
+      </a>
+    </div>
 
-    <div class="inquiry-box">
+    <div class="inquiry-box sidebar-inquiry">
       <h3>Trip Inquiry</h3>
 
-      <?php if(isset($success)): ?>
-        <p class="success"><?= $success ?></p>
-      <?php endif; ?>
+      <form method="POST" id="userForm" novalidate>
 
-      <form method="POST">
         <input type="hidden" name="tour_name" value="<?= $tour['title']; ?>">
 
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="phone" placeholder="Phone">
+        <div class="form-group">
+          <input type="text" name="name" id="name" placeholder="Full Name">
+          <small class="error"></small>
+        </div>
 
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <div class="form-group">
+          <input type="email" name="email" id="email" placeholder="Email (Optional)">
+          <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="phone" id="phone" placeholder="Phone">
+          <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+          <textarea name="message" id="message" placeholder="Your Inquiry"></textarea>
+          <small class="error"></small>
+        </div>
 
         <button type="submit" name="send_inquiry">Send Inquiry</button>
       </form>
+
     </div>
-
-
-  </aside>
+  </div>
 
 </section>
+
+<script src="assets/js/inquiry-validation.js"></script>
+<script src="assets/js/success-errorBox.js"></script>
 
 <?php include 'includes/footer.php'; ?>
