@@ -38,11 +38,11 @@ if (isset($_POST['submit'])) {
     $stmt = $conn->prepare("
         INSERT INTO tours
         (title, duration, price, price_usd, overview, highlights, includes, excludes, banner_image, pdf_file, is_popular, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->bind_param(
-    "sddsssssssi",
+    "sdddssssssii",
     $title,
     $duration,
     $price,        // NPR
@@ -106,39 +106,79 @@ if (isset($_POST['submit'])) {
 
 <form method="POST" enctype="multipart/form-data" class="admin-form">
 
-    <input type="text" name="title" placeholder="Tour Title" required>
-    <input type="text" name="duration" placeholder="Duration (e.g. 7 Days)" required>
-    <input type="number" step="0.01" name="price" placeholder="Price in NPR (e.g. 85000)" required>
-    <input type="number" step="0.01" name="price_usd" placeholder="Price in USD (e.g. 799)">
+    <div class="form-group">
+        <input type="text" name="title" id="title" placeholder="Tour Title">
+        <small class="error"></small>
+    </div>
 
+    <div class="form-group">
+        <input type="text" name="duration" id="duration" placeholder="Duration (e.g. 7 Days)">
+        <small class="error"></small>
+    </div>
 
-    <textarea name="overview" placeholder="Trip Overview" required></textarea>
-    <textarea name="highlights" placeholder="Trip Highlights (one per line)" required></textarea>
+    <div class="form-group">
+        <input type="number" step="0.01" name="price" id="price" placeholder="Price in NPR (e.g. 85000)">
+        <small class="error"></small>
+    </div>
+
+    <div class="form-group">
+        <input type="number" step="0.01" name="price_usd" id="price_usd" placeholder="Price in USD (e.g. 799)">
+        <small class="error"></small>
+    </div>
+
+    <div class="form-group">
+        <textarea name="overview" id="overview" placeholder="Trip Overview"></textarea>
+        <small class="error"></small>
+    </div>
+
+    <div class="form-group">
+        <textarea name="highlights" id="highlights" placeholder="Trip Highlights (one per line)"></textarea>
+        <small class="error"></small>
+    </div>
 
     <label>Add Itinerary</label>
     <div id="itinerary-wrapper">
+        <div class="itinerary-row">
+            <div class="form-group">
+                <input type="number" name="day_no[]" placeholder="Day 1" class="day-no">
+                <small class="error"></small>
+            </div>
 
-    <div class="itinerary-row">
-        <input type="number" name="day_no[]" placeholder="Day 1">
-        <input type="text" name="itinerary_title[]" placeholder="Title">
-        <textarea name="itinerary_desc[]" placeholder="Description"></textarea>
-        <button type="button" class="remove-itinerary">Remove</button>
-        
-    </div>
-    
+            <div class="form-group">
+                <input type="text" name="itinerary_title[]" placeholder="Title" class="it-title">
+                <small class="error"></small>
+            </div>
 
+            <div class="form-group">
+                <textarea name="itinerary_desc[]" placeholder="Description" class="it-desc"></textarea>
+                <small class="error"></small>
+            </div>
+
+            <button type="button" class="remove-itinerary">Remove</button>
+        </div>
     </div>
 
     <button type="button" class="additinerarybtn" onclick="addItinerary()">+ Add Day</button>
 
-    <textarea name="includes" placeholder="Cost Includes" required></textarea>
-    <textarea name="excludes" placeholder="Cost Excludes" required></textarea>
+    <div class="form-group">
+        <textarea name="includes" id="includes" placeholder="Cost Includes"></textarea>
+        <small class="error"></small>
+    </div>
 
-    <label>Banner Image *</label>
-    <input type="file" name="banner" accept="image/*" required>
+    <div class="form-group">
+        <textarea name="excludes" id="excludes" placeholder="Cost Excludes"></textarea>
+        <small class="error"></small>
+    </div>
 
-    <label>Trip PDF</label>
-    <input type="file" name="pdf" accept="application/pdf">
+    <div class="file_input">
+        <label>Banner Image *</label>
+        <input type="file" name="banner" accept="image/*" required>
+    </div>
+
+    <div class="file_input">
+        <label>Trip PDF</label>
+        <input type="file" name="pdf" accept="application/pdf">
+    </div>
 
     <label>Is Popular?</label>
     <select name="is_popular">
@@ -157,5 +197,7 @@ if (isset($_POST['submit'])) {
 </div>
 
 <script src="assets/js/itinerary-days-add-remove.js"></script>
+<script src="assets/js/tour-validation.js"></script>
+<script src="assets/js/itinerary-validation.js"></script>
 
 <?php include 'includes/footer.php'; ?>
