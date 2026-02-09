@@ -1,24 +1,37 @@
 <?php
+// Include database configuration
 include 'config/db.php';
 
-$id = $_GET['id'];
-$tour = mysqli_fetch_assoc(
-  mysqli_query($conn, "SELECT * FROM tours WHERE id=$id")
-);
+// Get tour ID from URL
+$id = intval($_GET['id'] ?? 0);
 
+
+// Fetch tour details using prepared statement
+$stmt = mysqli_prepare($conn, "SELECT * FROM tours WHERE id=? AND status=1");
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$tour = mysqli_fetch_assoc($result);
+mysqli_stmt_close($stmt);
+
+
+
+// Handle inquiry form submission
 if (isset($_POST['send_inquiry'])) {
-
   $tour_name = mysqli_real_escape_string($conn, $_POST['tour_name']);
   $name      = mysqli_real_escape_string($conn, $_POST['name']);
   $email     = mysqli_real_escape_string($conn, $_POST['email']);
   $phone     = mysqli_real_escape_string($conn, $_POST['phone']);
   $message   = mysqli_real_escape_string($conn, $_POST['message']);
 
-  $query = "INSERT INTO inquiries (tour_name, name, email, phone, message)
-            VALUES ('$tour_name', '$name', '$email', '$phone', '$message')";
+  // Insert inquiry using prepared statement
+  $stmt = mysqli_prepare($conn, "INSERT INTO inquiries (tour_name, name, email, phone, message) VALUES (?, ?, ?, ?, ?)");
+  mysqli_stmt_bind_param($stmt, "sssss", $tour_name, $name, $email, $phone, $message);
+  mysqli_stmt_execute($stmt);
+  $success = mysqli_stmt_affected_rows($stmt) > 0;
+  mysqli_stmt_close($stmt);
 
-  if (mysqli_query($conn, $query)) {
-
+  if ($success) {
     require_once 'includes/fcm.php';
     sendFCMToAdmins(
       $conn,
@@ -28,18 +41,12 @@ if (isset($_POST['send_inquiry'])) {
 
     header("Location: tour-details?id=$id&success=1");
     exit;
+  } else {
+    // Handle insertion failure (optional: add error message)
   }
 }
-?>
 
-<?php include 'includes/header.php'; ?>
-<div class="header-wrapper">
-  <?php include 'includes/topbar.php'; ?>
-  <?php include 'includes/navbar.php'; ?>
-</div>
-
-
-<?php
+// Define helper function for rendering lists
 function renderList($text)
 {
   $items = preg_split("/\r\n|\n|\r/", trim($text));
@@ -53,6 +60,24 @@ function renderList($text)
 }
 ?>
 
+<?php include 'includes/header.php'; ?>
+<div class="header-wrapper">
+  <?php include 'includes/topbar.php'; ?>
+  <?php include 'includes/navbar.php'; ?>
+</div>
+
+<?php
+// Sanitize and validate tour ID
+if ($id <= 0) {
+  echo "<p class='pageError invalidId'>Invalid tour ID!</p>";
+  exit;
+}
+
+if (!$tour) {
+  echo "<p class='pageError tournotfound'>Tour not found!</p>";
+  exit;
+}
+?>
 
 <!-- BANNER -->
 <section class="tour-banner"
