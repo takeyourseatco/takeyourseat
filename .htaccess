@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Prevent direct access to .php files
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?]
+RewriteRule ^ %1 [R=301,L]
+
+# If the requested file does not exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Load .php file automatically
+RewriteRule ^(.+)$ $1.php [L]
+
+Options -Indexes
