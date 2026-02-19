@@ -1,0 +1,15 @@
+# Environment
+.env
+
+# Firebase
+service-account.json
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# XAMPP
+*.zip

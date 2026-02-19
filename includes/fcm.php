@@ -59,7 +59,7 @@ function sendFCMToAdmins($conn, $title, $body) {
           "DELETE FROM admin_fcm_tokens WHERE token = '" . mysqli_real_escape_string($conn, $token) . "'"
         );
         file_put_contents(
-          __DIR__ . "/fcm-invalid-tokens.log",
+          __DIR__ . "/../logs/fcm-invalid-tokens.log",
           date('Y-m-d H:i:s') . " Removed token: $token\n",
           FILE_APPEND
         );
@@ -102,7 +102,13 @@ function sendSingleFCM($accessToken, $token, $title, $body) {
   $response = curl_exec($ch);
   curl_close($ch);
 
-  file_put_contents("fcm-log.txt", date('Y-m-d H:i:s') . $response . "\n", FILE_APPEND);
+  // file_put_contents("fcm-log.txt", date('Y-m-d H:i:s') . $response . "\n", FILE_APPEND);
+  file_put_contents(
+      __DIR__ . "/../logs/fcm-status.log",
+      date("Y-m-d H:i:s") . " - " . $response . PHP_EOL,
+      FILE_APPEND
+  );
+
 
   return json_decode($response, true);
 }
