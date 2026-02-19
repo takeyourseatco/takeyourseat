@@ -43,5 +43,20 @@ It includes Tours & Treks Packages, Flights, Services, Admin Panel, FCM Notifica
 
 ---
 
-## 📂 Project Structure
+## 🔒 Security Implemented
 
+- Prepared statements
+- Session-based authentication
+- Password hashing (`password_hash`)
+- Token-based FCM
+- Input sanitization
+- PRG pattern (Post-Redirect-Get)
+- Dynamic validation
+
+---
+
+## 👨‍💻 Developed By
+
+TakeYourSeat Team  
+Member: Kushal Acharya, Bipin Chapai
+Bharatpur, Nepal
