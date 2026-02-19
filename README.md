@@ -58,5 +58,5 @@ It includes Tours & Treks Packages, Flights, Services, Admin Panel, FCM Notifica
 ## 👨‍💻 Developed By
 
 TakeYourSeat Team  
-Member: Kushal Acharya, Bipin Chapai
+Member: Kushal Acharya, Bipin Chapai 
 Bharatpur, Nepal
