@@ -59,4 +59,5 @@ It includes Tours & Treks Packages, Flights, Services, Admin Panel, FCM Notifica
 
 Take Your Seat Team  
 Member: Kushal Acharya, Bipin Chapai, 
+Mentor: Amrit Sagar Bhattarai, 
 Bharatpur, Nepal
