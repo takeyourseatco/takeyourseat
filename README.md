@@ -1,7 +1,7 @@
 # ✈️ TakeYourSeat
 
 TakeYourSeat is a professional tour and travel platform built with PHP & MySQL.  
-It includes Tours & Treks Packages Flights, Services, Admin Panel, FCM Notifications, and dynamic inquiry handling.
+It includes Tours & Treks Packages, Flights, Services, Admin Panel, FCM Notifications, and dynamic inquiry handling.
 
 ---
 
