@@ -49,6 +49,14 @@
       </ul>
     </div>
 
+    <div class="footer-box">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="t&c">Terms & Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
 
     <!-- CONTACT -->
     <div class="footer-box">

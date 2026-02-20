@@ -13,7 +13,7 @@ RewriteRule ^(.+)$ $1.php [L]
 
 Options -Indexes
 
-<FilesMatch "\.(env|log|json)$">
-    Order allow,deny
-    Deny from all
+# Block file types
+<FilesMatch "\.(env|json|log|sql)$">
+    Require all denied
 </FilesMatch>
