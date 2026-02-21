@@ -21,10 +21,17 @@ if(isset($_POST['submit'])){
 <div class="admin-content">
 <h2>Add FAQ</h2>
 
-<form method="POST" enctype="multipart/form-data" class="admin-form">
+<form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
-    <input type="text" name="question" placeholder="Question" required>
-    <textarea name="answer" placeholder="Answer" required></textarea>
+    <div class="form-group">
+        <input type="text" name="question" placeholder="Question" data-validate="text10">
+        <small class="error"></small>
+    </div>
+
+    <div class="form-group">
+        <textarea name="answer" placeholder="Answer" data-validate="text10"></textarea>
+        <small class="error"></small>
+    </div>
 
     <label>Featured</label>
     <select name="featured" required>
@@ -41,4 +48,5 @@ if(isset($_POST['submit'])){
     <button name="submit">Add FAQ</button>
 </form>
 
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

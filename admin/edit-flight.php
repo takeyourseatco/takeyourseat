@@ -47,18 +47,34 @@ if(isset($_POST['update'])){
 <div class="admin-content">
   <h2>Edit Flight Post</h2>
 
-  <form method="POST" enctype="multipart/form-data" class="admin-form">
-        <input type="text" name="from_city" placeholder="From City" value="<?= $data['from_city'] ?>" required>
-        <input type="text" name="to_city" placeholder="To City" value="<?= $data['to_city'] ?>" required>
-        <!-- <input type="text" name="price" placeholder="Starting Price"> -->
-        <textarea name="description" placeholder="Description"><?= $data['description'] ?></textarea>
-        <label>Current Image</label> 
-        <div class="current-image">
-        <img src="uploads/images/flights/<?= $data['image']; ?>" alt="Current Tour Image">
+  <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
+
+        <div class="form-group">
+          <input type="text" name="from_city" placeholder="From City" value="<?= $data['from_city'] ?>" data-validate="city">
+          <small class="error"></small>
         </div>
 
-        <label>Change Image (optional)</label>
-        <input type="file" name="image" accept="image/*">
+        <div class="form-group">
+          <input type="text" name="to_city" placeholder="To City" value="<?= $data['to_city'] ?>" data-validate="city">
+          <small class="error"></small>
+        </div>
+
+        <!-- <input type="text" name="price" placeholder="Starting Price"> -->
+         <div class="form-group">
+          <textarea name="description" placeholder="Description" data-validate="text20"><?= $data['description'] ?></textarea>
+          <small class="error"></small>
+        </div>
+
+        
+        <label>Current Image</label> 
+        <div class="current-image">
+          <img src="uploads/images/flights/<?= $data['image']; ?>" alt="Current Tour Image">
+        </div>
+        
+        <div class="file_input">
+          <label>Change Image (optional)</label>
+          <input type="file" name="image" accept="image/*">
+        </div>
 
         <label>Group Fare</label>
         <select name="group_fare">
@@ -76,4 +92,5 @@ if(isset($_POST['update'])){
     </form>
 </div>
 
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

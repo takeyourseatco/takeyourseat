@@ -27,10 +27,17 @@ if(isset($_POST['update'])){
 <div class="admin-content">
   <h2>Edit FAQ</h2>
 
-  <form method="POST" enctype="multipart/form-data" class="admin-form">
+  <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
     
-    <input type="text" name="question" value="<?= htmlspecialchars($faq['question']) ?>" required>
-    <textarea name="answer" required><?= htmlspecialchars($faq['answer']) ?></textarea>
+    <div class="form-group">
+      <input type="text" name="question" value="<?= htmlspecialchars($faq['question']) ?>" data-validate="text10">
+      <small class="error"></small>
+    </div>
+
+    <div class="form-group">
+      <textarea name="answer" data-validate="text10"><?= htmlspecialchars($faq['answer']) ?></textarea>
+      <small class="error"></small>
+    </div>
 
     
     <label>Featured</label>
@@ -48,4 +55,5 @@ if(isset($_POST['update'])){
     <button name="update">Update FAQ</button>
 </form>
 
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

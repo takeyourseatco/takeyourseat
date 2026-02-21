@@ -54,17 +54,30 @@ if (isset($_POST['submit'])) {
 <div class="admin-content">
     <h2>Add New Flight Post</h2>
 
-    <form method="POST" enctype="multipart/form-data" class="admin-form">
+    <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
-        <input type="text" name="from_city" placeholder="From City" required>
-        <input type="text" name="to_city" placeholder="To City" required>
+        <div class="form-group">
+            <input type="text" name="from_city" id="from_city" placeholder="From City" data-validate="city">
+            <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="to_city" id="to_city" placeholder="To City" 
+            data-validate="city">
+            <small class="error"></small>
+        </div>
 
         <!-- <input type="text" name="price" placeholder="Starting Price"> -->
 
-        <textarea name="description" placeholder="Description"></textarea>
+        <div class="form-group">
+            <textarea name="description" id="description" placeholder="Description" data-validate="text20"></textarea>
+            <small class="error"></small>
+        </div>
 
-        <label>Flight Image</label>
-        <input type="file" name="image" accept="image/*" required>
+        <div class="file_input">
+            <label>Flight Image</label>
+            <input type="file" name="image" accept="image/*" required>
+        </div>
 
         <label>Group Fare</label>
         <select name="group_fare" required>
@@ -82,4 +95,5 @@ if (isset($_POST['submit'])) {
     </form>
 </div>
 
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

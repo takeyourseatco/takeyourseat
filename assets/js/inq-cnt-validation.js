@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     message: {
       input: document.getElementById("message"),
-      regex: /^.{10,}$/,
+      regex: /^[\s\S]{10,}$/,
       message: "Inquiry or Message must be at least 10 characters"
     }
   };

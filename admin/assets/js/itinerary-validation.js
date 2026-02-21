@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     valid &= validateField(
       descInput,
-      /^.{10,}$/,
+      /^[\s\S]{10,}$/,
       "Description must be at least 10 characters"
     );
 
@@ -73,3 +73,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
   });
 });
+          

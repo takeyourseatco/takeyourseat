@@ -27,10 +27,20 @@ if(isset($_POST['create_album'])){
 
     <h2>Add Album</h2>
 
-<form method="POST" enctype="multipart/form-data" class="admin-form">
-  <input type="text" name="title" placeholder="Album Title" required>
-  <input type="file" name="cover" accept="image/*" required>
+<form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
+
+  <div class="form-group">
+    <input type="text" name="title" placeholder="Album Title" required data-validate="name">
+    <small class="error"></small>
+  </div>
+
+  <div class="file_input">
+    <label>Cover Image</label>
+    <input type="file" name="cover" accept="image/*" required>
+  </div>
+
   <button type="submit" name="create_album">Create Album</button>
 
 </form>
 </div>
+<script src="assets/js/form-validator.js"></script>

@@ -99,14 +99,23 @@ if (isset($_POST['update'])) {
 <div class="admin-content">
   <h2>Edit Client</h2>
 
-  <form method="POST" enctype="multipart/form-data" class="admin-form">
+  <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
+
+    <div class="form-group">
+      <input type="text" name="name" value="<?= $client['name'] ?>" placeholder="Client Name" data-validate="name">
+      <small class="error"></small>
+    </div>
 
     <label>Current Logo</label>
     <img src="uploads/images/clients/<?= $client['logo'] ?>"
          height="80" style="margin-bottom:10px">
 
+    <div class="file_input">
     <label>Change Logo (JPG / PNG only)</label>
     <input type="file" name="logo" accept="image/jpeg,image/png">
+    </div>
+
+
 
     <label>Status</label>
     <select name="status">
@@ -118,4 +127,5 @@ if (isset($_POST['update'])) {
   </form>
 </div>
 
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

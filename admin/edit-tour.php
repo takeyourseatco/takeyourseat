@@ -19,6 +19,7 @@ $itineraries = mysqli_query(
 if (isset($_POST['update'])) {
 
     $title      = $_POST['title'];
+    $type       = $_POST['type'];
     $duration   = $_POST['duration'];
     $price      = $_POST['price'];
     $price_usd = $_POST['price_usd'];
@@ -50,6 +51,7 @@ if (isset($_POST['update'])) {
     $stmt = $conn->prepare("
         UPDATE tours SET
           title = ?,
+          type = ?,
           duration = ?,
           price = ?,
           price_usd = ?,
@@ -65,8 +67,9 @@ if (isset($_POST['update'])) {
     ");
 
     $stmt->bind_param(
-      "sddssssssssii",
+      "sssddsssssssii",
       $title,
+      $type,
       $duration,
       $price,
       $price_usd,
@@ -124,50 +127,55 @@ if (isset($_POST['update'])) {
 <div class="admin-content">
   <h2>Edit Tour</h2>
 
-  <form method="POST" enctype="multipart/form-data" class="admin-form">
+  <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
     <div class="form-group">
-        <input type="text" name="title" id="title" placeholder="Tour Title" value="<?= $data['title'] ?>">
+        <input type="text" name="title" id="title" placeholder="Tour Title" value="<?= $data['title'] ?>" data-validate="name">
+        <small class="error"></small>
+    </div>
+
+    <label>Type</label>
+    <select name="type">
+      <option value="domestic" <?= ($data['type']=='domestic')?'selected':'' ?>>Domestic</option>
+      <option value="international" <?= ($data['type']=='international')?'selected':'' ?>>International</option>
+    </select>
+
+    <div class="form-group">
+        <input type="text" name="duration" id="duration" placeholder="Duration (e.g. 7 Days)" value="<?= $data['duration'] ?>" data-validate="duration">
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <input type="text" name="duration" id="duration" placeholder="Duration (e.g. 7 Days)" value="<?= $data['duration'] ?>">
+        <input type="number" step="0.01" name="price" id="price" placeholder="Price in NPR (e.g. 85000)" value="<?= $data['price'] ?>" data-validate="price">
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <input type="number" step="0.01" name="price" id="price" placeholder="Price in NPR (e.g. 85000)" value="<?= $data['price'] ?>">
+        <input type="number" step="0.01" name="price_usd" id="price_usd" placeholder="Price in USD (e.g. 799)" value="<?= $data['price_usd']; ?>" data-validate="price">
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <input type="number" step="0.01" name="price_usd" id="price_usd" placeholder="Price in USD (e.g. 799)" value="<?= $data['price_usd']; ?>">
-        <small class="error"></small>
-    </div>
-
-
-    <div class="form-group">
-        <textarea name="overview" id="overview" placeholder="Trip Overview"><?= $data['overview'] ?></textarea>
+        <textarea name="overview" id="overview" placeholder="Trip Overview" data-validate="text20"><?= $data['overview'] ?></textarea>
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <textarea name="highlights" id="highlights" placeholder="Trip Highlights (one per line)"><?= $data['highlights'] ?></textarea>
+        <textarea name="highlights" id="highlights" placeholder="Trip Highlights (one per line)" data-validate="text10"><?= $data['highlights'] ?></textarea>
         <small class="error"></small>
     </div>
 
     <label>Edit Itinerary</label>
     <div id="itinerary-wrapper">
       <?php while ($row = mysqli_fetch_assoc($itineraries)): ?>
-        <div class="itinerary-item">
+        <div class="itinerary-row">
           <div class="form-group">
                 <input type="number" name="day_no[]" placeholder="Day 1" class="day-no" value="<?= $row['day_number'] ?>">
                 <small class="error"></small>
             </div>
 
           <div class="form-group">
-                <input type="text" name="itinerary_title[]" placeholder="Title" class="it-title" value="<?= htmlspecialchars($row['title']) ?>">
+                <input type="text" name="itinerary_title[]" placeholder="Title" class="it-title" value="<?= htmlspecialchars($row['title']) ?>" >
                 <small class="error"></small>
             </div>
 
@@ -183,12 +191,12 @@ if (isset($_POST['update'])) {
     <button type="button" class="additinerarybtn" onclick="addItinerary()">+ Add Day</button>
 
     <div class="form-group">
-        <textarea name="includes" id="includes" placeholder="Cost Includes"><?= $data['includes'] ?></textarea>
+        <textarea name="includes" id="includes" placeholder="Cost Includes" data-validate="text10"><?= $data['includes'] ?></textarea>
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <textarea name="excludes" id="excludes" placeholder="Cost Excludes"><?= $data['excludes'] ?></textarea>
+        <textarea name="excludes" id="excludes" placeholder="Cost Excludes" data-validate="text10"><?= $data['excludes'] ?></textarea>
         <small class="error"></small>
     </div>
 
@@ -247,21 +255,21 @@ function addItinerary() {
   const wrapper = document.getElementById('itinerary-wrapper');
 
   const div = document.createElement('div');
-  div.className = 'itinerary-item';
+  div.className = 'itinerary-row';
 
   div.innerHTML = `
     <div class="form-group">
-            <input type="number" name="day_no[]" placeholder="Day 1" class="day-no">
+            <input type="number" name="day_no[]" placeholder="Day 1" class="day-no" data-validate="number">
             <small class="error"></small>
         </div>
 
         <div class="form-group">
-            <input type="text" name="itinerary_title[]" placeholder="Title" class="it-title">
+            <input type="text" name="itinerary_title[]" placeholder="Title" class="it-title" data-validate="name">
             <small class="error"></small>
         </div>
 
         <div class="form-group">
-            <textarea name="itinerary_desc[]" placeholder="Description" class="it-desc"></textarea>
+            <textarea name="itinerary_desc[]" placeholder="Description" class="it-desc" data-validate="text10"></textarea>
             <small class="error"></small>
         </div>
 
@@ -278,7 +286,7 @@ document.addEventListener('click', function(e){
 });
 </script>
 
-<script src="assets/js/tour-validation.js"></script>
+<!-- <script src="assets/js/tour-validation.js"></script> -->
+<script src="assets/js/form-validator.js"></script>
 <script src="assets/js/itinerary-validation.js"></script>
-
 <?php include 'includes/footer.php'; ?>

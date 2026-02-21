@@ -35,6 +35,10 @@ if(isset($_POST['upload'])){
     <?php } ?>
   </select>
 
-  <input type="file" name="images[]" multiple accept="image/*" required>
+  <div class="file_input">
+    <label>Select Photos</label>
+    <input type="file" name="images[]" multiple accept="image/*" required>
+  </div>
+  
   <button type="submit" name="upload">Upload</button>
 </form>

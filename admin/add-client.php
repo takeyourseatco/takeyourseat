@@ -32,11 +32,17 @@ if (isset($_POST['submit'])) {
 <div class="admin-content">
 <h2>Add Client</h2>
 
-<form method="POST" enctype="multipart/form-data" class="admin-form">
-    <input type="text" name="name" placeholder="Client Name" required>
+<form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
-    <label>Client Logo</label>
-    <input type="file" name="logo" accept="image/*" required>
+     <div class="form-group">
+        <input type="text" name="name" placeholder="Client Name" data-validate="name">
+        <small class="error"></small>
+    </div>
+
+    <div class="file_input">
+        <label>Client Logo</label>
+        <input type="file" name="logo" accept="image/*" required>
+    </div>
 
     <select name="status">
         <option value="1">Active</option>
@@ -45,3 +51,6 @@ if (isset($_POST['submit'])) {
 
     <button type="submit" name="submit">Add Client</button>
 </form>
+
+<script src="assets/js/form-validator.js"></script>
+<?php include 'includes/footer.php'; ?>

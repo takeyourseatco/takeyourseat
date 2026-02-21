@@ -75,16 +75,22 @@ if (isset($_POST['update'])) {
 <div class="admin-content">
   <h2>Edit Album</h2>
 
-  <form method="POST" enctype="multipart/form-data" class="admin-form">
+  <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
-    <input type="text" name="title" value="<?= $data['title'] ?>" required>
+    <div class="form-group">
+      <input type="text" name="title" value="<?= $data['title'] ?>" required data-validate="name">
+      <small class="error"></small>
+    </div>
 
     <label>Current Cover Image</label>
     <div class="current-image">
       <img src="uploads/gallery/<?= $data['slug'] ?>/<?= $data['cover_image'] ?>">
     </div>
 
-    <input type="file" name="cover" accept="image/*">
+    <div class="file_input">
+      <label>Change Cover Image</label>
+      <input type="file" name="cover" accept="image/*">
+    </div>
 
     <label>Status</label>
     <select name="status">
@@ -96,5 +102,5 @@ if (isset($_POST['update'])) {
   </form>
 </div>
 
-
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

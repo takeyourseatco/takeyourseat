@@ -49,18 +49,27 @@ if(isset($_POST['update'])){
 <div class="admin-content">
   <h2>Edit Testimonial</h2>
 
-  <form method="POST" class="admin-form">
+  <form method="POST" class="admin-form validate-form">
 
-    <input type="text" name="name"
-      value="<?= $data['name'] ?>"
-      placeholder="Client Name" required>
+    <div class="form-group">
+      <input type="text" name="name"
+        value="<?= $data['name'] ?>"
+        placeholder="Client Name" data-validate="name">
+      <small class="error"></small>
+    </div>
 
-    <input type="text" name="service"
-      value="<?= $data['service'] ?>"
-      placeholder="Service (e.g. Tour Package – Nepal)" required>
+    <div class="form-group">
+      <input type="text" name="service"
+        value="<?= $data['service'] ?>"
+        placeholder="Service (e.g. Tour Package – Nepal)" data-validate="name">
+      <small class="error"></small>
+    </div>
 
-    <textarea name="review" required
-      placeholder="Client Review"><?= $data['review'] ?></textarea>
+    <div class="form-group">
+      <textarea name="review" data-validate="text10"
+        placeholder="Client Review"><?= $data['review'] ?></textarea>
+      <small class="error"></small>
+    </div>
 
     <label>Rating</label>
     <select name="rating">
@@ -82,4 +91,5 @@ if(isset($_POST['update'])){
   </form>
 </div>
 
+<script src="assets/js/form-validator.js"></script>
 <?php include 'includes/footer.php'; ?>

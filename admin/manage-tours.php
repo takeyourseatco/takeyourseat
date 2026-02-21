@@ -31,6 +31,7 @@ if(isset($_GET['delete'])){
         <th>S.N.</th>
         <th>created Date</th>
         <th>Title</th>
+        <th>Type</th>
         <th>Duration</th>
         <th>Price</th>
         <th>Price USD</th>
@@ -68,6 +69,7 @@ if(isset($_GET['delete'])){
         <td><?= $row['created_at'] ?></td>
  
         <td><?= $row['title'] ?></td>
+        <td><?= $row['type'] ?></td>
         <td><?= $row['duration'] ?></td>
         <td><?= $row['price'] ?></td>
         <td><?= $row['price_usd'] ?></td>

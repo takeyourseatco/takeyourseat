@@ -31,11 +31,22 @@ if (isset($_POST['submit'])) {
 <div class="admin-content">
 <h2>Add Testimonial</h2>
 
-<form method="POST" enctype="multipart/form-data" class="admin-form">
-    <input type="text" name="name" placeholder="Client Name" required>
-    <input type="text" name="service" placeholder="Service (Tour / Flight / Visa)">
+<form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
+
+    <div class="form-group">
+        <input type="text" name="name" placeholder="Client Name" data-validate="name">
+        <small class="error"></small>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="service" placeholder="Service (Tour / Flight / Visa)" data-validate="name">
+        <small class="error"></small>
+    </div>
     
-    <textarea name="review" placeholder="Client Review" required></textarea>
+    <div class="form-group">
+        <textarea name="review" placeholder="Client Review" data-validate="text10"></textarea>
+        <small class="error"></small>
+    </div>
 
     <label>Rating</label>
     <select name="rating" class="rating">
@@ -54,3 +65,5 @@ if (isset($_POST['submit'])) {
 
     <button type="submit" name="submit">Add Testimonial</button>
 </form>
+<script src="assets/js/form-validator.js"></script>
+<?php include 'includes/footer.php'; ?>
