@@ -10,7 +10,7 @@
     <ul class="nav-menu" id="navMenu">
       <li><a href="/TakeYourSeat">Home</a></li>
       <li class="dropdown">
-        <a href="tours">Tour</a>
+        <a href="">Tour</a>
         <ul class="dropdown-menu">
           <li><a href="tours?type=domestic">Domestic</a></li>
           <li><a href="tours?type=international">International</a></li>

@@ -94,7 +94,7 @@ if (!$tour) {
       <?php endif; ?>
 
       <h1><?= $tour['title'] ?></h1>
-      <p><?= $tour['duration'] ?> Days</p>
+      <p><?= $tour['duration'] ?></p>
 
       <?php if ($tour['is_popular'] == 1): ?>
         <span class="popular-badge-detail"><i class="fa-solid fa-fire"></i> Popular</span>
@@ -206,7 +206,7 @@ if (!$tour) {
 
 </section>
 
-<script src="assets/js/inquiry-validation.js"></script>
+<script src="assets/js/inq-cnt-validation.js"></script>
 <script src="assets/js/success-errorBox.js"></script>
 
 <?php include 'includes/footer.php'; ?>

@@ -17,7 +17,24 @@
 <section class="container tour-list">
 
   <?php
-  $result = mysqli_query($conn, "SELECT * FROM tours WHERE status = 1 ORDER BY id DESC");
+    $type = $_GET['type'] ?? '';
+
+    $sql = "SELECT * FROM tours WHERE status = 1";
+
+    if ($type) {
+        $sql .= " AND type = ?";
+        $sql .= " ORDER BY id DESC";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $type);
+    } else {
+        $sql .= " ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
   while ($row = mysqli_fetch_assoc($result)) {
   ?>
     <div class="tour-row">
@@ -34,7 +51,7 @@
       <div class="tour-details">
 
         <h3><?= $row['title'] ?></h3>
-        <p class="duration"><?= $row['duration'] ?> Days</p>
+        <p class="duration"><?= $row['duration'] ?></p>
         <p class="desc">
           Experience the best of Nepal with this carefully designed tour package.
         </p>
