@@ -7,6 +7,7 @@ include 'includes/sidebar.php';
 if (isset($_POST['submit'])) {
 
     $title      = $_POST['title'];
+    $type = $_POST['type'];
     $duration   = $_POST['duration'];
     $price      = $_POST['price'];
     $price_usd = $_POST['price_usd'];
@@ -37,16 +38,17 @@ if (isset($_POST['submit'])) {
     /* INSERT TOUR */
     $stmt = $conn->prepare("
         INSERT INTO tours
-        (title, duration, price, price_usd, overview, highlights, includes, excludes, banner_image, pdf_file, is_popular, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (title, type, duration, price, price_usd, overview, highlights, includes, excludes, banner_image, pdf_file, is_popular, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->bind_param(
-    "sdddssssssii",
+    "sssddssssssii",
     $title,
+    $type,
     $duration,
-    $price,        // NPR
-    $price_usd,    // USD
+    $price,       
+    $price_usd,  
     $overview,
     $highlights,
     $includes,
@@ -104,35 +106,41 @@ if (isset($_POST['submit'])) {
 <div class="admin-content">
 <h2>Add New Tour</h2>
 
-<form method="POST" enctype="multipart/form-data" class="admin-form">
+<form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
     <div class="form-group">
-        <input type="text" name="title" id="title" placeholder="Tour Title">
+        <input type="text" name="title" id="title" placeholder="Tour Title"  data-validate="name">
+        <small class="error"></small>
+    </div>
+
+    <label>Type</label>
+    <select name="type">
+        <option value="domestic">Domestic</option>
+        <option value="international">International</option>
+    </select>
+
+    <div class="form-group">
+        <input type="text" name="duration" id="duration" placeholder="Duration (e.g. 7 Days)" data-validate="duration">
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <input type="text" name="duration" id="duration" placeholder="Duration (e.g. 7 Days)">
+        <input type="number" step="0.01" name="price" id="price" placeholder="Price in NPR (e.g. 85000)" data-validate="price">
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <input type="number" step="0.01" name="price" id="price" placeholder="Price in NPR (e.g. 85000)">
+        <input type="number" step="0.01" name="price_usd" id="price_usd" placeholder="Price in USD (e.g. 799)" data-validate="price">
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <input type="number" step="0.01" name="price_usd" id="price_usd" placeholder="Price in USD (e.g. 799)">
+        <textarea name="overview" id="overview" placeholder="Trip Overview" data-validate="text20"></textarea>
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <textarea name="overview" id="overview" placeholder="Trip Overview"></textarea>
-        <small class="error"></small>
-    </div>
-
-    <div class="form-group">
-        <textarea name="highlights" id="highlights" placeholder="Trip Highlights (one per line)"></textarea>
+        <textarea name="highlights" id="highlights" placeholder="Trip Highlights (one per line)" data-validate="text10"></textarea>
         <small class="error"></small>
     </div>
 
@@ -161,12 +169,12 @@ if (isset($_POST['submit'])) {
     <button type="button" class="additinerarybtn" onclick="addItinerary()">+ Add Day</button>
 
     <div class="form-group">
-        <textarea name="includes" id="includes" placeholder="Cost Includes"></textarea>
+        <textarea name="includes" id="includes" placeholder="Cost Includes" data-validate="text10"></textarea>
         <small class="error"></small>
     </div>
 
     <div class="form-group">
-        <textarea name="excludes" id="excludes" placeholder="Cost Excludes"></textarea>
+        <textarea name="excludes" id="excludes" placeholder="Cost Excludes" data-validate="text10"></textarea>
         <small class="error"></small>
     </div>
 
@@ -197,7 +205,8 @@ if (isset($_POST['submit'])) {
 </div>
 
 <script src="assets/js/itinerary-days-add-remove.js"></script>
-<script src="assets/js/tour-validation.js"></script>
+<!-- <script src="assets/js/tour-validation.js"></script> -->
+<script src="assets/js/form-validator.js"></script>
 <script src="assets/js/itinerary-validation.js"></script>
 
 <?php include 'includes/footer.php'; ?>
