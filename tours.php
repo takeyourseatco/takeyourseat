@@ -5,11 +5,17 @@
   <?php include 'includes/navbar.php'; ?>
 </div>
 
-<?php include 'config/db.php'; ?>
+<?php include 'config/db.php'; 
+  $type = $_GET['type'] ?? '';
+?>
 
 <section class="page-banner">
   <div class="overlay">
-    <h1>Our Packages</h1>
+    <?php if ($type) : ?>
+      <h1>Our <?php echo ucfirst($type); ?> Packages</h1>
+    <?php else : ?>
+      <h1>Our All Packages</h1>
+    <?php endif; ?>
     <p>Explore Nepal & beyond with Take Your Seat</p>
   </div>
 </section>
@@ -17,8 +23,7 @@
 <section class="container tour-list">
 
   <?php
-    $type = $_GET['type'] ?? '';
-
+    
     $sql = "SELECT * FROM tours WHERE status = 1";
 
     if ($type) {
@@ -49,6 +54,14 @@
       </div>
 
       <div class="tour-details">
+
+        <?php if (!$type && in_array($row['type'], ['domestic','international'])): ?>
+          <span class="type-badge">
+              <i class="fa-solid 
+              <?= $row['type'] === 'domestic' ? 'fa-house' : 'fa-earth-americas' ?>"></i>
+              <?= ucfirst($row['type']) ?>
+          </span>
+        <?php endif; ?>
 
         <h3><?= $row['title'] ?></h3>
         <p class="duration"><?= $row['duration'] ?></p>

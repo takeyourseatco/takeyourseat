@@ -135,7 +135,7 @@ if (isset($_POST['send'])) {
   </div>
 </section>
 
-<script src="assets/js/inquiry-validation.js"></script>
+<script src="assets/js/inq-cnt-validation.js"></script>
 <script src="assets/js/success-errorBox.js"></script>
 
 <?php include 'includes/footer.php'; ?>
