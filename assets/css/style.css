@@ -2123,7 +2123,7 @@ a {
     height: 220px;
   }
 
-  .tour-details{
+  .tour-details {
     border-radius: 12px;
     border-bottom: 4px solid var(--orange);
   }
@@ -2500,8 +2500,6 @@ a {
     flex-direction: column;
   }
 }
-
-s
 
 /* HERO Services */
 .page-hero {
@@ -3112,59 +3110,69 @@ s
   justify-content: center;
 }
 
-/* TERMS SECTION */
+/* POLICY & TERMS SECTION (COMMON STYLE) */
+.policy-section,
 .terms-section {
-    padding: 30px 20px;
-    background: #f9f9f9;
+  padding: 30px 20px;
+  background: #f9f9f9;
 }
 
+.policy-container,
 .terms-container {
-    /* max-width: 900px; */
-    margin: auto;
-    background: #fff;
-    padding: 20px 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 20px 50px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+.policy-container h2,
 .terms-container h2 {
-    margin-top: 35px;
-    font-size: 22px;
-    color: #222;
-    border-left: 4px solid #ff6600;
-    padding-left: 12px;
+  margin-top: 35px;
+  font-size: 22px;
+  color: #222;
+  border-left: 4px solid var(--orange);
+  padding-left: 12px;
 }
 
+.policy-container p,
 .terms-container p {
-    margin: 15px 0;
-    line-height: 1.7;
-    color: #555;
+  margin: 15px 0;
+  line-height: 1.7;
+  color: #555;
+}
+
+.policy-container strong,
+.terms-container strong {
+  color: black;
 }
 
 .terms-container ul {
-    margin: 15px 0 15px 20px;
+  margin: 15px 0 15px 20px;
 }
 
 .terms-container ul li {
-    margin-bottom: 10px;
-    color: #555;
+  margin-bottom: 10px;
+  color: #555;
 }
 
 .effective-date {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 30px;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 30px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .terms-container {
-        padding: 25px;
-    }
+  .policy-container,
+  .terms-container {
+    padding: 25px;
+  }
 
-    .page-banner h1 {
-        font-size: 28px;
-    }
+  .page-banner h1 {
+    font-size: 28px;
+  }
 }
 
 .type-badge {
