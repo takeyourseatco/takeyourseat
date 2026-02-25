@@ -53,7 +53,7 @@
       <h3>Useful Links</h3>
       <ul>
         <li><a href="t&c">Terms & Conditions</a></li>
-        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="privacy-policy">Privacy Policy</a></li>
       </ul>
     </div>
 

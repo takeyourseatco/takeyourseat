@@ -3112,14 +3112,16 @@ s
   justify-content: center;
 }
 
-/* TERMS SECTION */
+/* POLICY & TERMS SECTION (COMMON STYLE) */
+.policy-section,
 .terms-section {
     padding: 30px 20px;
     background: #f9f9f9;
 }
 
+.policy-container,
 .terms-container {
-    /* max-width: 900px; */
+    max-width: 900px;
     margin: auto;
     background: #fff;
     padding: 20px 50px;
@@ -3127,18 +3129,25 @@ s
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
+.policy-container h2,
 .terms-container h2 {
     margin-top: 35px;
     font-size: 22px;
     color: #222;
-    border-left: 4px solid #ff6600;
+    border-left: 4px solid var(--orange);
     padding-left: 12px;
 }
 
+.policy-container p,
 .terms-container p {
     margin: 15px 0;
     line-height: 1.7;
     color: #555;
+}
+
+.policy-container strong,
+.terms-container strong {
+    color: black;
 }
 
 .terms-container ul {
@@ -3158,6 +3167,7 @@ s
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+    .policy-container,
     .terms-container {
         padding: 25px;
     }
