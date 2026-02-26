@@ -1,6 +1,7 @@
 <?php
 // Include database configuration
 include 'config/db.php';
+include 'includes/mailer.php';
 
 // Get tour ID from URL
 $id = intval($_GET['id'] ?? 0);
@@ -38,6 +39,17 @@ if (isset($_POST['send_inquiry'])) {
       "New Tour Inquiry",
       "New inquiry received for " . $tour_name
     );
+
+    $subject = "New Inquiry from $name for $tour_name";
+    $body = "
+        <h3>New Inquiry Received</h3>
+        <p><strong>Tour:</strong> $tour_name</p>
+        <p><strong>Name:</strong> $name</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Phone:</strong> $phone</p>
+        <p><strong>Message:</strong> $message</p>
+    ";
+    sendAdminMail($subject, $body);
 
     header("Location: tour-details?id=$id&success=1");
     exit;

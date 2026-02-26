@@ -1,5 +1,6 @@
 <?php
 include 'config/db.php';
+include 'includes/mailer.php';
 
 if (isset($_POST['send'])) {
 
@@ -13,12 +14,23 @@ if (isset($_POST['send'])) {
 
   if (mysqli_query($conn, $query)) {
 
-    // require_once 'includes/fcm.php';
+    require_once 'includes/fcm.php';
 
-    // sendFCMToAdmins(
-    //   "📩 New Contact Message TYS",
-    //   "New message received from $name"
-    // );
+    sendFCMToAdmins(
+      $conn,
+      "New Contact Message",
+      "New message received from $name"
+    );
+
+    $subject = "New Contact Message from $name";
+    $body = "
+        <h3>New Contact Message Received</h3>
+        <p><strong>Name:</strong> $name</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Phone:</strong> $phone</p>
+        <p><strong>Message:</strong> $message</p>
+    ";
+    sendAdminMail($subject, $body);
 
     header("Location: contact?success=1");
     exit;
