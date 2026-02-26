@@ -1,5 +1,12 @@
 <?php
+
 session_start();
+
+if (isset($_SESSION['admin'])) {
+    header("Location: dashboard");
+    exit();
+}
+
 include '../config/db.php';
 include 'includes/header.php';
 include 'includes/sidebar.php';
@@ -34,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   exit;
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html>

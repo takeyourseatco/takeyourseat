@@ -1,4 +1,6 @@
-Deny from all
+php_flag engine off
+Options -ExecCGI
+AddType text/plain .php .phtml .php3 .php4 .php5 .php7
 
 # Prevent access to .htaccess itself
 <Files ".htaccess">
