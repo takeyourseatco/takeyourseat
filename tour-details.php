@@ -1,5 +1,11 @@
 <?php
-// Include database configuration
+
+session_start();
+
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 include 'config/db.php';
 include 'includes/mailer.php';
 
@@ -19,6 +25,14 @@ mysqli_stmt_close($stmt);
 
 // Handle inquiry form submission
 if (isset($_POST['send_inquiry'])) {
+
+  if (
+    !isset($_POST['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+  ) {
+    die("CSRF validation failed.");
+  }
+
   $tour_name = mysqli_real_escape_string($conn, $_POST['tour_name']);
   $name      = mysqli_real_escape_string($conn, $_POST['name']);
   $email     = mysqli_real_escape_string($conn, $_POST['email']);
@@ -54,7 +68,7 @@ if (isset($_POST['send_inquiry'])) {
     header("Location: tour-details?id=$id&success=1");
     exit;
   } else {
-    // Handle insertion failure (optional: add error message)
+    die("Failed to submit inquiry. Please try again.");
   }
 }
 
@@ -187,6 +201,8 @@ if (!$tour) {
       <h3>Trip Inquiry</h3>
 
       <form method="POST" id="userForm" novalidate>
+
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
         <input type="hidden" name="tour_name" value="<?= $tour['title']; ?>">
 

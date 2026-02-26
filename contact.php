@@ -1,39 +1,65 @@
 <?php
-include 'config/db.php';
-include 'includes/mailer.php';
+session_start();
 
-if (isset($_POST['send'])) {
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
-  $name    = mysqli_real_escape_string($conn, $_POST['name']);
-  $email   = mysqli_real_escape_string($conn, $_POST['email']);
-  $phone   = mysqli_real_escape_string($conn, $_POST['phone']);
-  $message = mysqli_real_escape_string($conn, $_POST['message']);
+require_once 'config/db.php';
+require_once 'includes/mailer.php';
 
-  $query = "INSERT INTO inquiries (name, email, phone, message)
-            VALUES ('$name', '$email', '$phone', '$message')";
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['send'])) {
 
-  if (mysqli_query($conn, $query)) {
+  if (
+    !isset($_POST['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+  ) {
+    die("CSRF validation failed.");
+  }
 
-    require_once 'includes/fcm.php';
+  // Trim inputs
+  $name    = trim($_POST['name'] ?? '');
+  $email   = trim($_POST['email'] ?? '');
+  $phone   = trim($_POST['phone'] ?? '');
+  $message = trim($_POST['message'] ?? '');
 
-    sendFCMToAdmins(
-      $conn,
-      "New Contact Message",
-      "New message received from $name"
-    );
 
-    $subject = "New Contact Message from $name";
-    $body = "
-        <h3>New Contact Message Received</h3>
-        <p><strong>Name:</strong> $name</p>
-        <p><strong>Email:</strong> $email</p>
-        <p><strong>Phone:</strong> $phone</p>
-        <p><strong>Message:</strong> $message</p>
-    ";
-    sendAdminMail($subject, $body);
+  $stmt = $conn->prepare("INSERT INTO inquiries (name, email, phone, message) VALUES (?, ?, ?, ?)");
 
-    header("Location: contact?success=1");
-    exit;
+  if ($stmt) {
+    $stmt->bind_param("ssss", $name, $email, $phone, $message);
+
+    if ($stmt->execute()) {
+
+      // FCM Notification
+      require_once 'includes/fcm.php';
+      sendFCMToAdmins(
+        $conn,
+        "New Contact Message",
+        "New message received from $name"
+      );
+
+      // Email Notification
+      $subject = "New Contact Message from $name";
+      $body = "
+                    <h3>New Contact Message Received</h3>
+                    <p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>
+                    <p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>
+                    <p><strong>Phone:</strong> " . htmlspecialchars($phone) . "</p>
+                    <p><strong>Message:</strong> " . nl2br(htmlspecialchars($message)) . "</p>
+                ";
+
+      sendAdminMail($subject, $body);
+
+      header("Location: contact?success=1");
+      exit;
+    } else {
+      die("Database execution failed.");
+    }
+
+    $stmt->close();
+  } else {
+    die("Database prepare failed.");
   }
 }
 ?>
@@ -117,6 +143,8 @@ if (isset($_POST['send'])) {
         <h2>Send Us a Message</h2>
 
         <form method="POST" id="userForm" novalidate>
+
+          <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
           <div class="form-group">
             <input type="text" name="name" id="name" placeholder="Full Name">
