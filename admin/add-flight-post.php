@@ -4,7 +4,18 @@ include 'auth.php';
 include 'includes/header.php';
 include 'includes/sidebar.php';
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if (isset($_POST['submit'])) {
+
+    if (
+        !isset($_POST['csrf_token']) ||
+        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+    ) {
+        die("CSRF validation failed.");
+    }
 
     $from   = $_POST['from_city'];
     $to     = $_POST['to_city'];
@@ -56,14 +67,16 @@ if (isset($_POST['submit'])) {
 
     <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
         <div class="form-group">
             <input type="text" name="from_city" id="from_city" placeholder="From City" data-validate="city">
             <small class="error"></small>
         </div>
 
         <div class="form-group">
-            <input type="text" name="to_city" id="to_city" placeholder="To City" 
-            data-validate="city">
+            <input type="text" name="to_city" id="to_city" placeholder="To City"
+                data-validate="city">
             <small class="error"></small>
         </div>
 

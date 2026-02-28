@@ -3,8 +3,12 @@
 session_start();
 
 if (isset($_SESSION['admin'])) {
-    header("Location: dashboard");
-    exit();
+  header("Location: dashboard");
+  exit();
+}
+
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
 include '../config/db.php';
@@ -12,6 +16,13 @@ include 'includes/header.php';
 include 'includes/sidebar.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  if (
+    !isset($_POST['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+  ) {
+    die("CSRF validation failed.");
+  }
 
   $username = mysqli_real_escape_string($conn, $_POST['username']);
   $password = $_POST['password'];
@@ -65,11 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <p class="error"><?= $error ?></p>
     <?php endif; ?>
 
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="password" placeholder="Password" required>
     <button name="login">Login</button>
   </form>
 
 </body>
-
 </html>

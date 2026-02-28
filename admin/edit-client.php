@@ -4,6 +4,10 @@ include 'auth.php';
 include 'includes/header.php';
 include 'includes/sidebar.php';
 
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $id = (int)$_GET['id'];
 $client = mysqli_fetch_assoc(
   mysqli_query($conn, "SELECT * FROM clients WHERE id=$id")
@@ -15,12 +19,13 @@ if (!$client) {
 }
 
 if (!extension_loaded('gd')) {
-    die('GD Library is not enabled on the server.');
+  die('GD Library is not enabled on the server.');
 }
 
 
 /* IMAGE RESIZE FUNCTION */
-function resizeImage($source, $dest, $maxWidth = 300) {
+function resizeImage($source, $dest, $maxWidth = 300)
+{
   list($width, $height, $type) = getimagesize($source);
 
   $ratio = $width / $height;
@@ -43,10 +48,16 @@ function resizeImage($source, $dest, $maxWidth = 300) {
   }
 
   imagecopyresampled(
-    $image_p, $image,
-    0, 0, 0, 0,
-    $newWidth, $newHeight,
-    $width, $height
+    $image_p,
+    $image,
+    0,
+    0,
+    0,
+    0,
+    $newWidth,
+    $newHeight,
+    $width,
+    $height
   );
 
   if ($type == IMAGETYPE_PNG) {
@@ -62,6 +73,13 @@ function resizeImage($source, $dest, $maxWidth = 300) {
 
 /* UPDATE CLIENT */
 if (isset($_POST['update'])) {
+
+  if (
+    !isset($_POST['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+  ) {
+    die("CSRF validation failed.");
+  }
 
   $status = $_POST['status'];
   $logo   = $client['logo'];
@@ -101,6 +119,8 @@ if (isset($_POST['update'])) {
 
   <form method="POST" enctype="multipart/form-data" class="admin-form validate-form">
 
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
     <div class="form-group">
       <input type="text" name="name" value="<?= $client['name'] ?>" placeholder="Client Name" data-validate="name">
       <small class="error"></small>
@@ -108,19 +128,19 @@ if (isset($_POST['update'])) {
 
     <label>Current Logo</label>
     <img src="uploads/images/clients/<?= $client['logo'] ?>"
-         height="80" style="margin-bottom:10px">
+      height="80" style="margin-bottom:10px">
 
     <div class="file_input">
-    <label>Change Logo (JPG / PNG only)</label>
-    <input type="file" name="logo" accept="image/jpeg,image/png">
+      <label>Change Logo (JPG / PNG only)</label>
+      <input type="file" name="logo" accept="image/jpeg,image/png">
     </div>
 
 
 
     <label>Status</label>
     <select name="status">
-      <option value="1" <?= $client['status']==1?'selected':'' ?>>Active</option>
-      <option value="0" <?= $client['status']==0?'selected':'' ?>>Inactive</option>
+      <option value="1" <?= $client['status'] == 1 ? 'selected' : '' ?>>Active</option>
+      <option value="0" <?= $client['status'] == 0 ? 'selected' : '' ?>>Inactive</option>
     </select>
 
     <button name="update">Update Client</button>

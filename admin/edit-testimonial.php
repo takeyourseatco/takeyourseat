@@ -4,12 +4,23 @@ include 'auth.php';
 include 'includes/header.php';
 include 'includes/sidebar.php';
 
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $id = (int)$_GET['id'];
 $data = mysqli_fetch_assoc(
   mysqli_query($conn, "SELECT * FROM testimonials WHERE id=$id")
 );
 
-if(isset($_POST['update'])){
+if (isset($_POST['update'])) {
+
+  if (
+    !isset($_POST['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+  ) {
+    die("CSRF validation failed.");
+  }
 
   $name    = $_POST['name'];
   $service = $_POST['service'];
@@ -37,7 +48,7 @@ if(isset($_POST['update'])){
     $id
   );
 
-  if($stmt->execute()){
+  if ($stmt->execute()) {
     header("Location: manage-testimonials");
     exit();
   } else {
@@ -50,6 +61,8 @@ if(isset($_POST['update'])){
   <h2>Edit Testimonial</h2>
 
   <form method="POST" class="admin-form validate-form">
+
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
     <div class="form-group">
       <input type="text" name="name"
@@ -73,9 +86,9 @@ if(isset($_POST['update'])){
 
     <label>Rating</label>
     <select name="rating">
-      <?php for($i=5;$i>=1;$i--): ?>
+      <?php for ($i = 5; $i >= 1; $i--): ?>
         <option value="<?= $i ?>"
-          <?= ($data['rating']==$i)?'selected':'' ?>>
+          <?= ($data['rating'] == $i) ? 'selected' : '' ?>>
           <?= $i ?> ★
         </option>
       <?php endfor; ?>
@@ -83,8 +96,8 @@ if(isset($_POST['update'])){
 
     <label>Status</label>
     <select name="status">
-      <option value="1" <?= $data['status']==1?'selected':'' ?>>Active</option>
-      <option value="0" <?= $data['status']==0?'selected':'' ?>>Inactive</option>
+      <option value="1" <?= $data['status'] == 1 ? 'selected' : '' ?>>Active</option>
+      <option value="0" <?= $data['status'] == 0 ? 'selected' : '' ?>>Inactive</option>
     </select>
 
     <button name="update">Update Testimonial</button>
