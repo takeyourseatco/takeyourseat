@@ -35,18 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
 
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
-            $_SESSION['success'] = "Sign in successful! Welcome, $user[name].";
 
-            header("Location: index?success=1");
+            header("Location: index?success=signin");
             exit;
         } else {
-            $_SESSION['error'] = "Invalid email or password.";
-            header("Location: signin?error=1");
+            header("Location: signin?error=invalid");
             exit;
         }
     } else {
-        $_SESSION['error'] = "Account does not exist.";
-        header("Location: signin?error=1");
+        header("Location: signin?error=not_found");
         exit;
     }
 }
@@ -62,14 +59,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
     <?php if (isset($_GET['success'])): ?>
         <div class="success-box" id="successBox">
             <strong>Success!</strong>
-            <p><?php echo isset($_SESSION['success']) ? $_SESSION['success'] : 'Sign in successful!'; ?></p>
+            <?php
+            if ($_GET['success'] === 'signin') echo "Sign in successful!";
+            ?>
         </div>
     <?php endif; ?>
 
     <?php if (isset($_GET['error'])): ?>
         <div class="error-box" id="errorBox">
             <strong>Error!</strong>
-            <p><?php echo isset($_SESSION['error']) ? $_SESSION['error'] : 'Something went wrong!'; ?></p>
+            <?php
+            if ($_GET['error'] === 'invalid') echo "Invalid email or password.";
+            if ($_GET['error'] === 'not_found') echo "Account does not exist.";
+            ?>
         </div>
     <?php endif; ?>
 
@@ -79,10 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
     </div>
 </section>
 
-<div class="contact-form-box">
-    <div class="container">
+<div class="auth-container">
+    <div class="auth-form">
 
-        <form method="POST" id="registerForm" novalidate>
+        <form method="POST" id="loginForm" novalidate>
 
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
@@ -96,10 +98,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
                 <small class="error"></small>
             </div>
 
-            <p class="acc-sign-txt">Create an account <a href="signup">Sign Up</a></p>
+            <button type="submit" name="signin" class="auth-btn">Sign In</button>
 
-            <button type="submit" name="signin">Sign In</button>
+            <p class="auth-switch">
+                Don’t have an account?
+                <a href="signup">Sign Up</a>
+            </p>
+
         </form>
+
     </div>
 </div>
 

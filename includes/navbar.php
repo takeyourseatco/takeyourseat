@@ -8,7 +8,7 @@
 
     <!-- MENU -->
     <ul class="nav-menu" id="navMenu">
-      <li><a href="/TakeYourSeat">Home</a></li>
+      <li><a href="/Digital_Tourism_Platform">Home</a></li>
       <li class="dropdown">
         <a href="">Tours / Treks</a>
         <ul class="dropdown-menu">
@@ -24,8 +24,15 @@
       <li><a href="about">About Us</a></li>
 
       <?php if (isset($_SESSION['user_id'])): ?>
+        <li class="dropdown">
+          <a href=""><?php echo $_SESSION['user_name']; ?></a>
 
-        <li><a href="signout">Sign Out</a></li>
+          <ul class="dropdown-menu">
+            <li><a href="">Profile</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="signout">Sign Out</a></li>
+          </ul>
+        </li>
 
       <?php else: ?>
 
@@ -45,7 +52,7 @@
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
       <ul>
-        <li><a href="/TakeYourSeat">Home</a></li>
+        <li><a href="/Digital_Tourism_Platform">Home</a></li>
         <li class="mobile-dropdown">
           <a href="">Tours / Treks</a>
           <ul class="mobile-submenu">
@@ -62,7 +69,15 @@
 
         <?php if (isset($_SESSION['user_id'])): ?>
 
-          <li><a href="signout">Sign Out</a></li>
+          <li class="mobile-dropdown">
+            <a href=""><?php echo $_SESSION['user_name']; ?></a>
+
+            <ul class="mobile-submenu">
+              <li><a href="">Profile</a></li>
+              <li><a href="">Bookings</a></li>
+              <li><a href="signout">Sign Out</a></li>
+            </ul>
+          </li>
 
         <?php else: ?>
 
