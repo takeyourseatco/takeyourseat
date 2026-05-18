@@ -52,8 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $_SESSION['error'] = "Email already exists";
-        header("Location: signup?error=1");
+        header("Location: signup?error=email_exist");
         exit;
     }
 
@@ -68,13 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
 
         $_SESSION['user_id'] = $stmt->insert_id;
         $_SESSION['user_name'] = $name;
-        $_SESSION['success'] = "Registration successful! Welcome, $name.";
 
-        header("Location: index?success=1");
+        header("Location: index?success=signup");
         exit;
     } else {
-        $_SESSION['error'] = "Registration failed! Please try again.";
-        header("Location: signup?error=1");
+        header("Location: signup?error=invalid");
         exit;
     }
 }
@@ -90,14 +87,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
     <?php if (isset($_GET['success'])): ?>
         <div class="success-box" id="successBox">
             <strong>Success!</strong>
-            <p><?php echo isset($_SESSION['success']) ? $_SESSION['success'] : 'Registration successful!'; ?></p>
+            <?php
+            if ($_GET['success'] === 'signup') echo "Sign Up successful! Welcome, " . (isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User') . ".";
+            ?>
         </div>
     <?php endif; ?>
 
     <?php if (isset($_GET['error'])): ?>
         <div class="error-box" id="errorBox">
             <strong>Error!</strong>
-            <p><?php echo isset($_SESSION['error']) ? $_SESSION['error'] : 'Something went wrong!'; ?></p>
+            <?php
+            if ($_GET['error'] === 'email_exist') echo "Email already exists.";
+            if ($_GET['error'] === 'invalid') echo "Registration failed! Please try again.";
+            ?>
         </div>
     <?php endif; ?>
 
@@ -107,8 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
     </div>
 </section>
 
-<div class="contact-form-box">
-    <div class="container">
+<div class="auth-container">
+    <div class="auth-form">
 
         <form method="POST" id="registerForm" novalidate>
 
@@ -139,9 +141,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
                 <small class="error"></small>
             </div>
 
-            <p class="acc-sign-txt">Already have an account? <a href="signin">Sign In</a></p>
+            <button type="submit" name="signup" class="auth-btn">Sign Up</button>
 
-            <button type="submit" name="signup">Sign Up</button>
+            <p class="auth-switch">
+                Already have an account?
+                <a href="signin">Sign In</a>
+            </p>
         </form>
     </div>
 </div>

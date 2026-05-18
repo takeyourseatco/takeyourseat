@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleBox(id) {
     const box = document.getElementById(id);
-
     if (!box) return;
 
     setTimeout(() => {
@@ -18,13 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
 
     if (window.history.replaceState) {
-      let url = window.location.href;
+      const url = new URL(window.location);
 
-      url = url
-        .replace(/([?&])(success|error)=1(&|$)/, "$1")
-        .replace(/[?&]$/, "");
+      url.searchParams.delete("success");
+      url.searchParams.delete("error");
 
-      window.history.replaceState({}, document.title, url);
+      window.history.replaceState({}, document.title, url.pathname + (url.search ? url.search : ""));
     }
   }
 });
