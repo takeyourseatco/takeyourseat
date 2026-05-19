@@ -112,11 +112,13 @@ if (!$tour) {
   <div class="overlay">
     <div class="container">
 
-      <?php if (isset($_GET['success']) && $_GET['success'] === 'sent'): ?>
+      <?php if (isset($_GET['success'])): ?>
         <div class="success-box" id="successBox">
           <strong>Success!</strong>
           <?php
           if ($_GET['success'] === 'sent') echo "Your inquiry has been sent successfully. We’ll contact you soon.";
+          if ($_GET['success'] === 'booked') echo "Your package has been booked successfully. We’ll contact you soon.";
+          if ($_GET['success'] === 'signin') echo "Sign in successful! Welcome, " . (isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User') . ".";
           ?>
         </div>
       <?php endif; ?>
@@ -126,6 +128,7 @@ if (!$tour) {
           <strong>Error!</strong>
           <?php
           if ($_GET['error'] === 'failed') echo "Inquiry failed to send. Please try again.";
+          if ($_GET['error'] === 'booking_failed') echo "Booking failed. Please try again.";
           ?>
         </div>
       <?php endif; ?>
@@ -139,8 +142,6 @@ if (!$tour) {
 
     </div>
   </div>
-
-
 </section>
 
 
@@ -209,12 +210,15 @@ if (!$tour) {
     </div>
 
     <div class="download-box sidebar-download">
-      <h3>Book Now</h3>
+      <h3>Book Package</h3>
       <p>Secure your spot on this amazing trip!</p>
 
-      <a href="" class="download-btn">
-        Book
+      <a href="booking?id=<?= $tour['id'] ?>" class="download-btn">
+        Book Now
       </a>
+      <!-- <a href="signin?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="download-btn">
+        Book Now
+      </a> -->
     </div>
 
     <div class="inquiry-box sidebar-inquiry">
