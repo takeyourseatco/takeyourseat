@@ -38,6 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
 
             header("Location: index?success=signin");
             exit;
+
+            // $redirect = $_GET['redirect'] ?? 'index?success=signin';
+
+            // header("Location: " . $redirect . (strpos($redirect, '?') === false ? '?' : '&') . "success=signin");
+            // exit;
         } else {
             header("Location: signin?error=invalid");
             exit;

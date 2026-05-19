@@ -3370,7 +3370,7 @@ a {
   border-radius: 6px;
 }
 
-.auth-container {
+.auth-container, .booking-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3378,7 +3378,7 @@ a {
   background-color: #f9fbfd;
 }
 
-.auth-form {
+.auth-form, .booking-form {
   width: 100%;
   max-width: 400px;
   background: #fff;
@@ -3406,18 +3406,18 @@ a {
   border-color: var(--orange);
 } */
 
-.auth-btn {
+.auth-btn, .booking-btn {
   width: 100%;
   padding: 10px;
   background: var(--blue);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
 }
 
-.auth-btn:hover {
+.auth-btn:hover, .booking-btn:hover {
   background: var(--orange);
 }
 

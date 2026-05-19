@@ -18,7 +18,7 @@
 <section class="terms-section">
     <div class="container terms-container">
 
-        <p class="effective-date">
+        <!-- <p class="effective-date">
             <strong>Last Updated:</strong> <?php echo date("F d, Y"); ?>
         </p>
 
@@ -81,7 +81,7 @@
         <p>
             We may update this Terms and conditions periodically.
             Changes will be posted on this page with an updated revision date.
-        </p>
+        </p> -->
 
     </div>
 </section>

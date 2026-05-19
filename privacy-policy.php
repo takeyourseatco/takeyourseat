@@ -17,7 +17,7 @@
 <section class="policy-section">
     <div class="policy-container">
 
-        <p class="effective-date">
+        <!-- <p class="effective-date">
             <strong>Last Updated:</strong> <?php echo date("F d, Y"); ?>
         </p>
 
@@ -76,7 +76,7 @@
         <p>
             We may update this Privacy Policy periodically.
             Changes will be posted on this page with an updated revision date.
-        </p>
+        </p> -->
 
     </div>
 </section>
